@@ -12,11 +12,35 @@
 <body>
     <!-- Hero Section -->
     <section class="hero" id="inicio">
-        <div class="hero-background"></div>
+        <!-- Background Image of Camila -->
+        <div class="hero-photo-container">
+            <div class="hero-photo" id="heroPhoto"></div>
+            <!-- Curtains Animation -->
+            <div class="curtain curtain-left"></div>
+            <div class="curtain curtain-right"></div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <div class="particles-container">
+            <div class="particle particle-1">🌸</div>
+            <div class="particle particle-2">🦋</div>
+            <div class="particle particle-3">🌺</div>
+            <div class="particle particle-4">🦋</div>
+            <div class="particle particle-5">🌸</div>
+            <div class="particle particle-6">🌺</div>
+            <div class="particle particle-7">🦋</div>
+            <div class="particle particle-8">🌸</div>
+            <div class="particle particle-9">🦋</div>
+            <div class="particle particle-10">🌺</div>
+        </div>
+        
+        <!-- Background Overlay -->
+        <div class="hero-overlay"></div>
+        
         <div class="hero-content">
-            <h2 class="hero-subtitle">Mis Quince Años</h2>
-            <h1 class="hero-name">Camila</h1>
-            <div class="countdown-container">
+            <h2 class="hero-subtitle" id="heroSubtitle">Mis Quince Años</h2>
+            <h1 class="hero-name" id="heroName">Camila Hernández</h1>
+            <div class="countdown-container" id="countdownContainer">
                 <div class="countdown-item">
                     <span class="countdown-number" id="days">00</span>
                     <span class="countdown-label">DÍAS</span>
@@ -36,13 +60,51 @@
             </div>
             <button class="primary-btn" onclick="scrollToSection('rsvp')">Confirmar Asistencia</button>
         </div>
+        
+        <!-- Add Photo Instructions -->
+        <div class="photo-instructions">
+            <p>💡 Para agregar la foto de Camila, reemplaza la URL en styles.css línea 106:</p>
+            <code>background-image: url('tu-foto-camila.jpg');</code>
+        </div>
+    </section>
+
+    <!-- Mass Section -->
+    <section class="mass-section" id="misa">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Misa de Acción de Gracias</h2>
+                <div class="event-grid">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16v12H5.17L4 17.17V4zm0 0a2 2 0 012-2h12a2 2 0 012 2v3a2 2 0 01-2 2h-5.5l-1.5 1.5L15.5 17H6"/>
+                                <path d="M11 4h2"/>
+                            </svg>
+                        </div>
+                        <h3>Parroquia del Nuestra Señora del Sagrado Corazón</h3>
+                        <p>📍 Av. 8 217, Col. Ignacio Zaragoza</p>
+                        <p>🏘️ Venustiano Carranza, C.P. 15000, CDMX</p>
+                        <p>🕐 5:00 p.m.</p>
+                        <div class="map-link">
+                            <a href="https://maps.google.com/maps?q=Av.+8+217,+Col.+Ignacio+Zaragoza,+Venustiano+Carranza,+C.P.+15000,+CDMX&t=&z=15&ie=UTF8&iwloc=&output=embed" target="_blank" rel="noopener noreferrer">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Ver en Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Event Details Section -->
     <section class="event-details" id="detalles">
         <div class="container">
             <div class="section-content">
-                <h2 class="section-title">Detalles del Evento</h2>
+                <h2 class="section-title">Agenda del Día</h2>
                 <div class="event-grid">
                     <div class="event-card">
                         <div class="event-icon">
@@ -50,15 +112,39 @@
                                 <path d="M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"/>
                             </svg>
                         </div>
-                        <h3>Agenda del día</h3>
-                        <p> 5:00 p.m. - Misa de acción de gracias</p>
-                        <p> 6:00 p.m. - Recepción en salón</p>
-                        <p> 6:30 p.m. - Inicio del evento</p>
-                        <p> 7:00 p.m. - Mi vals familiar</p>
-                        <p> 7:30 p.m. - Performance</p>
-                        <p> 8:30 p.m. - ¡Que todo se decontrole!</p>
-                        <p>12:00 a.m. - ¿Unos chilaquilitos?</p>
-                        <p>01:00 a.m. - ¿Que se acabó la fiesta?</p>
+                        <h3>Programa del Día</h3>
+                        <div class="agenda-item">
+                            <span class="agenda-time">5:00 p.m.</span>
+                            <span class="agenda-activity">Misa de acción de gracias</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">6:00 p.m.</span>
+                            <span class="agenda-activity">Recepción en salón</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">6:30 p.m.</span>
+                            <span class="agenda-activity">Inicio del evento</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">7:00 p.m.</span>
+                            <span class="agenda-activity">Vals</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">7:30 p.m.</span>
+                            <span class="agenda-activity">Performance</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">8:30 p.m.</span>
+                            <span class="agenda-activity">¡Que todo se descontrole!</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">12:00 a.m.</span>
+                            <span class="agenda-activity">¿Unos Chilaquilitos?</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">1:00 a.m.</span>
+                            <span class="agenda-activity">¿Que se acabó la fiesta?</span>
+                        </div>
                     </div>
                     <div class="event-card">
                         <div class="event-icon">
@@ -68,8 +154,19 @@
                             </svg>
                         </div>
                         <h3>Lugar de Recepción</h3>
-                        <p>Salón 'D Luz</p>
-                        <p>¡Aquí, a divertirse!</p>
+                        <p>Salón de Luz</p>
+                        <p>📍 Av. 8 217, Col. Ignacio Zaragoza</p>
+                        <p>🏘️ Venustiano Carranza, C.P. 15000, CDMX</p>
+                        <p>Te espero con todo el ánimo</p>
+                        <div class="map-link">
+                            <a href="https://maps.google.com/maps?q=Av.+8+217,+Col.+Ignacio+Zaragoza,+Venustiano+Carranza,+C.P.+15000,+CDMX&t=&z=15&ie=UTF8&iwloc=&output=embed" target="_blank" rel="noopener noreferrer">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Ver en Google Maps
+                            </a>
+                        </div>
                     </div>
                     <div class="event-card">
                         <div class="event-icon">
@@ -78,8 +175,8 @@
                             </svg>
                         </div>
                         <h3> Dress Code</h3>
-                        <p>Relajado, ¡Es una fiesta!</p>
-                        <p>Vístete elegante, pero cómodo</p>
+                        <p>Relajado pero limpio</p>
+                        <p>Vístete elegante y cómodo</p>
                     </div>
                 </div>
             </div>

@@ -273,12 +273,48 @@ function handleErrors(error, context) {
     }, 5000);
 }
 
+// Hero Animation Controller
+function initializeHeroAnimations() {
+    const heroPhoto = document.getElementById('heroPhoto');
+    const heroSubtitle = document.getElementById('heroSubtitle');
+    const heroName = document.getElementById('heroName');
+    const countdownContainer = document.getElementById('countdownContainer');
+    
+    // Stagger animations for better effect
+    setTimeout(() => {
+        if (heroSubtitle) {
+            heroSubtitle.style.animation = 'fadeInUp 800ms cubic-bezier(0.25, 0.8, 0.25, 1) 100ms both';
+        }
+    }, 500);
+    
+    setTimeout(() => {
+        if (heroName) {
+            heroName.style.animation = 'fadeInUp 800ms cubic-bezier(0.25, 0.8, 0.25, 1) 300ms both';
+        }
+    }, 700);
+    
+    setTimeout(() => {
+        if (countdownContainer) {
+            countdownContainer.style.animation = 'fadeInUp 800ms cubic-bezier(0.25, 0.8, 0.25, 1) 500ms both';
+        }
+    }, 900);
+    
+    setTimeout(() => {
+        if (heroPhoto) {
+            heroPhoto.style.animation = 'photoReveal 3s ease-out 1s forwards';
+        }
+    }, 2000);
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
     try {
         // Initialize countdown timer
         updateCountdown();
         setInterval(updateCountdown, 1000);
+        
+        // Initialize hero animations
+        initializeHeroAnimations();
         
         // Initialize gallery
         initializeGallery();

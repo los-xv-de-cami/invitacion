@@ -97,6 +97,123 @@ h1, h2, h3 {
     animation: float 20s ease-in-out infinite;
 }
 
+/* Hero Photo Container */
+.hero-photo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    background-image: url('camila-photo.jpg'); /* 📸 REEMPLAZA con la foto de Camila */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+    animation: photoReveal 3s ease-out 1s forwards;
+    transform: scale(1.1);
+}
+
+/* Curtains Animation */
+.curtain {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: linear-gradient(90deg, 
+        rgba(240, 247, 255, 0.95) 0%, 
+        rgba(248, 250, 252, 0.9) 50%, 
+        rgba(240, 247, 255, 0.95) 100%);
+    z-index: 3;
+    backdrop-filter: blur(10px);
+}
+
+.curtain-left {
+    left: 0;
+    animation: curtainOpenLeft 2.5s ease-out 0.5s forwards;
+    box-shadow: 2px 0 20px rgba(168, 197, 229, 0.3);
+}
+
+.curtain-right {
+    right: 0;
+    animation: curtainOpenRight 2.5s ease-out 0.5s forwards;
+    box-shadow: -2px 0 20px rgba(168, 197, 229, 0.3);
+}
+
+/* Floating Particles */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0;
+    animation: floatParticle 8s ease-in-out infinite;
+}
+
+.particle-1 { left: 10%; top: 20%; animation-delay: 0s; }
+.particle-2 { left: 80%; top: 15%; animation-delay: 1s; }
+.particle-3 { left: 15%; top: 60%; animation-delay: 2s; }
+.particle-4 { left: 85%; top: 70%; animation-delay: 1.5s; }
+.particle-5 { left: 25%; top: 30%; animation-delay: 3s; }
+.particle-6 { left: 75%; top: 40%; animation-delay: 2.5s; }
+.particle-7 { left: 50%; top: 10%; animation-delay: 4s; }
+.particle-8 { left: 30%; top: 80%; animation-delay: 3.5s; }
+.particle-9 { left: 70%; top: 85%; animation-delay: 4.5s; }
+.particle-10 { left: 60%; top: 25%; animation-delay: 5s; }
+
+/* Hero Overlay */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(253, 253, 253, 0.7) 0%,
+        rgba(240, 247, 255, 0.5) 50%,
+        rgba(253, 253, 253, 0.7) 100%
+    );
+    z-index: 2;
+    animation: overlayFade 2s ease-out 3s forwards;
+}
+
+/* Photo Instructions */
+.photo-instructions {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(44, 62, 80, 0.9);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    z-index: 5;
+    opacity: 0;
+    animation: instructionsFade 1s ease-out 5s forwards;
+}
+
+.photo-instructions code {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
 .hero-content {
     text-align: center;
     z-index: 2;
@@ -219,6 +336,84 @@ h1, h2, h3 {
 
 .event-card p:last-child {
     margin-bottom: 0;
+}
+
+/* Mass Section */
+.mass-section {
+    background: var(--bg-surface);
+}
+
+/* Agenda Styles */
+.agenda-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: all 300ms ease;
+}
+
+.agenda-item:last-child {
+    border-bottom: none;
+}
+
+.agenda-item:hover {
+    background: var(--primary-100);
+    margin: 0 -16px;
+    padding: 12px 16px;
+    border-radius: 6px;
+}
+
+.agenda-time {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-700);
+    min-width: 80px;
+    text-align: left;
+}
+
+.agenda-activity {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-align: right;
+    flex: 1;
+    margin-left: 16px;
+}
+
+/* Map Links */
+.map-link {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.map-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-700);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: var(--primary-100);
+    transition: all 300ms ease;
+}
+
+.map-link a:hover {
+    background: var(--primary-500);
+    color: var(--bg-surface);
+    transform: translateY(-2px);
+}
+
+.map-link a svg {
+    transition: transform 300ms ease;
+}
+
+.map-link a:hover svg {
+    transform: scale(1.1);
 }
 
 /* RSVP Section */
@@ -423,6 +618,80 @@ h1, h2, h3 {
     }
 }
 
+/* New Hero Animations */
+@keyframes photoReveal {
+    0% {
+        opacity: 0;
+        transform: scale(1.2) blur(10px);
+    }
+    30% {
+        opacity: 0.3;
+        transform: scale(1.15) blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.1) blur(0px);
+    }
+}
+
+@keyframes curtainOpenLeft {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes curtainOpenRight {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes floatParticle {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) rotate(360deg);
+    }
+}
+
+@keyframes overlayFade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes instructionsFade {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-name {
@@ -480,6 +749,46 @@ h1, h2, h3 {
     .music-info {
         display: none;
     }
+    
+    /* Agenda responsive */
+    .agenda-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 4px;
+    }
+    
+    .agenda-time {
+        min-width: auto;
+        font-size: 14px;
+    }
+    
+    .agenda-activity {
+        margin-left: 0;
+        font-size: 14px;
+        text-align: left;
+    }
+    
+    /* Map links responsive */
+    .map-link a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    /* Hero responsive adjustments */
+    .photo-instructions {
+        display: none; /* Hide instructions on mobile to keep clean */
+    }
+    
+    .particle {
+        font-size: 18px;
+    }
+    
+    .hero-photo {
+        background-size: cover;
+        background-position: center center;
+    }
+}
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {

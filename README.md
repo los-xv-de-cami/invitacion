@@ -55,7 +55,30 @@ Una invitación virtual elegante y sofisticada para celebrar los quince años de
 
 ### 🎯 Personalización Fácil
 
-#### Cambiar Fotos
+#### Foto Principal de Camila (Hero)
+**MUY IMPORTANTE:** Para agregar la foto de Camila en el hero principal:
+
+1. **Coloca tu foto** en la carpeta raíz del proyecto con el nombre: `camila-photo.jpg`
+2. **O edita** la línea 106 en `styles.css`:
+```css
+.hero-photo {
+    background-image: url('tu-foto-camila.jpg');
+    /* Cambia 'tu-foto-camila.jpg' por el nombre real de tu archivo */
+}
+```
+
+**Recomendaciones de foto:**
+- ✅ **Resolución:** Mínimo 1920x1080 px
+- ✅ **Formato:** JPG o PNG
+- ✅ **Tipo:** Foto elegante de Camila (puede ser portrait o full body)
+- ✅ **Calidad:** Alta resolución para que se vea nítida
+
+**La foto aparecerá con animación elegante:**
+- 🌸 Cortinas que se abren gradualmente
+- 🦋 Mariposas y flores flotantes
+- ✨ Revelación suave con efectos de desenfoque
+
+#### Galería de Fotos
 Reemplaza los `gallery-placeholder` divs con imágenes reales:
 ```html
 <div class="gallery-item">
