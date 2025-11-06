@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Simple - Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #qrResult {
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            background: #ffe6e6;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Simple - Test</h1>
+        <input type="url" id="url" placeholder="https://example.com" value="https://google.com">
+        <br>
+        <button onclick="generateQR()">Generar QR</button>
+        <div id="qrResult"></div>
+        <div id="error"></div>
+    </div>
+
+    <!-- Librería QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        function generateQR() {
+            const url = document.getElementById('url').value.trim();
+            const resultDiv = document.getElementById('qrResult');
+            const errorDiv = document.getElementById('error');
+            
+            // Limpiar errores anteriores
+            errorDiv.innerHTML = '';
+            resultDiv.innerHTML = '';
+            
+            if (!url) {
+                errorDiv.innerHTML = '<div class="error">Por favor ingresa una URL</div>';
+                return;
+            }
+            
+            try {
+                // Verificar que la librería se cargó
+                if (typeof QRCode === 'undefined') {
+                    throw new Error('Librería QRCode no cargada');
+                }
+                
+                // Crear QR
+                new QRCode(resultDiv, {
+                    text: url,
+                    width: 256,
+                    height: 256,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                
+                console.log('QR generado exitosamente para:', url);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                errorDiv.innerHTML = '<div class="error">Error: ' + error.message + '</div>';
+            }
+        }
+        
+        // Test automático al cargar
+        window.addEventListener('load', function() {
+            setTimeout(generateQR, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Código QR - Camila</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #D4AF37 0%, #F4E4BC 50%, #E6C882 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            padding: 40px;
+            text-align: center;
+            border: 3px solid #D4AF37;
+        }
+
+        h1 {
+            color: #D4AF37;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        input[type="url"], input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="url"]:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #B8941F;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .preset-buttons {
+            margin-bottom: 25px;
+        }
+
+        .preset-buttons h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .preset-btn {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .preset-btn:hover {
+            background: #B8941F;
+            transform: translateY(-2px);
+        }
+
+        button[type="submit"], .download-btn {
+            background: linear-gradient(135deg, #D4AF37, #B8941F);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        button[type="submit"]:hover, .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        #qrResult {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #D4AF37;
+            display: none;
+        }
+
+        #qrResult img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .error {
+            color: #e74c3c;
+            background: #fdf2f2;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #e74c3c;
+        }
+
+        .success {
+            color: #27ae60;
+            background: #f2fdf2;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #27ae60;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💫 Generador de Código QR</h1>
+        
+        <form id="qrForm">
+            <div class="input-group">
+                <label for="url">URL o Texto:</label>
+                <input type="url" id="url" placeholder="https://tu-sitio.com" required>
+            </div>
+
+            <div class="preset-buttons">
+                <h3>Enlaces rápidos:</h3>
+                <button type="button" class="preset-btn" onclick="setPreset('instagram')">Instagram</button>
+                <button type="button" class="preset-btn" onclick="setPreset('facebook')">Facebook</button>
+                <button type="button" class="preset-btn" onclick="setPreset('whatsapp')">WhatsApp</button>
+                <button type="button" class="preset-btn" onclick="setPreset('camila')">Sitio Camila</button>
+            </div>
+
+            <button type="submit">🔍 Generar Código QR</button>
+        </form>
+
+        <div id="qrResult">
+            <h3>Tu código QR está listo:</h3>
+            <img id="qrImage" alt="Código QR">
+            <br>
+            <button class="download-btn" id="downloadBtn">💾 Descargar</button>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        let qrCode = null;
+
+        function setPreset(type) {
+            const urlInput = document.getElementById('url');
+            switch(type) {
+                case 'instagram':
+                    urlInput.value = 'https://instagram.com/tu-usuario';
+                    break;
+                case 'facebook':
+                    urlInput.value = 'https://facebook.com/tu-pagina';
+                    break;
+                case 'whatsapp':
+                    urlInput.value = 'https://wa.me/521234567890';
+                    break;
+                case 'camila':
+                    urlInput.value = window.location.origin + '/index.html';
+                    break;
+            }
+        }
+
+        function showMessage(text, type = 'success') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.className = type;
+            messageDiv.textContent = text;
+            messageDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function generateQR() {
+            const url = document.getElementById('url').value.trim();
+            
+            if (!url) {
+                showMessage('Por favor ingresa una URL válida', 'error');
+                return;
+            }
+
+            const qrResult = document.getElementById('qrResult');
+            const qrImage = document.getElementById('qrImage');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            try {
+                // Clear previous QR code
+                if (qrCode) {
+                    qrCode.clear();
+                }
+
+                // Create new QR code
+                qrCode = new QRCode(qrImage, {
+                    text: url,
+                    width: 300,
+                    height: 300,
+                    colorDark: "#D4AF37",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+                // Show result
+                qrResult.style.display = 'block';
+                
+                // Setup download
+                setTimeout(() => {
+                    const canvas = qrImage.querySelector('canvas');
+                    if (canvas) {
+                        downloadBtn.onclick = () => {
+                            const link = document.createElement('a');
+                            link.download = 'codigo-qr-camila.png';
+                            link.href = canvas.toDataURL();
+                            link.click();
+                        };
+                    }
+                }, 100);
+
+                showMessage('¡Código QR generado exitosamente!', 'success');
+
+            } catch (error) {
+                console.error('Error generando QR:', error);
+                showMessage('Error al generar el código QR. Verifica que la URL sea válida.', 'error');
+            }
+        }
+
+        // Form submission
+        document.getElementById('qrForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateQR();
+        });
+
+        // Load Camila URL as default
+        window.addEventListener('load', function() {
+            setPreset('camila');
+        });
+    </script>
+</body>
+</html>
