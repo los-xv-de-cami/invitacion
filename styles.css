@@ -33,7 +33,7 @@ h1, h2, h3 {
 }
 
 .hero-name {
-    font-size: 80px;
+    font-size: 90px;
     font-weight: 400;
     font-style: italic;
     line-height: 1.1;
@@ -235,7 +235,7 @@ body::after {
     height: 100%;
     background-image: url('camila-photo.jpg'); /* 📸 REEMPLAZA con la foto de Camila */
     background-size: cover;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
     position: relative;
     z-index: 1;
@@ -907,7 +907,7 @@ body::after {
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-name {
-        font-size: 48px;
+        font-size: 55px;
     }
     
     .section-title {
