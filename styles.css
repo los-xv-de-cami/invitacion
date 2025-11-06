@@ -1032,3 +1032,129 @@ body::after {
         display: none;
     }
 }
+
+/* Separador Ornamental */
+.ornamental-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    margin: 0;
+    position: relative;
+    padding: 40px 0;
+}
+
+.ornamental-separator::before {
+    content: '';
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(212, 175, 55, 0.3) 20%, 
+        #D4AF37 50%, 
+        rgba(212, 175, 55, 0.3) 80%, 
+        transparent 100%);
+    flex-grow: 1;
+    max-width: 400px;
+    min-width: 200px;
+}
+
+.ornamental-separator::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #D4AF37;
+    border-radius: 50%;
+    margin: 0 30px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* Volutas decorativas */
+.ornamental-separator .volute-left,
+.ornamental-separator .volute-right {
+    position: relative;
+    width: 50px;
+    height: 40px;
+}
+
+.ornamental-separator .volute-left::before,
+.ornamental-separator .volute-left::after,
+.ornamental-separator .volute-right::before,
+.ornamental-separator .volute-right::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #D4AF37;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+}
+
+.ornamental-separator .volute-left::before {
+    top: 8px;
+    left: 15px;
+}
+
+.ornamental-separator .volute-left::after {
+    top: 24px;
+    left: 25px;
+}
+
+.ornamental-separator .volute-right::before {
+    top: 8px;
+    right: 25px;
+}
+
+.ornamental-separator .volute-right::after {
+    top: 24px;
+    right: 15px;
+}
+
+/* Curva decorativa adicional */
+.ornamental-separator .curve-decoration {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    border: 2px solid #D4AF37;
+    border-top: none;
+    border-right: none;
+    border-radius: 0 0 0 20px;
+    opacity: 0.6;
+}
+
+.ornamental-separator .curve-decoration-right {
+    transform: scaleX(-1);
+    right: 10px;
+    top: 10px;
+}
+
+.ornamental-separator .curve-decoration-left {
+    left: 10px;
+    top: 10px;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+    .ornamental-separator {
+        height: 60px;
+        padding: 30px 0;
+    }
+    
+    .ornamental-separator::before {
+        max-width: 250px;
+        min-width: 150px;
+    }
+    
+    .ornamental-separator::after {
+        margin: 0 20px;
+        width: 10px;
+        height: 10px;
+    }
+    
+    .ornamental-separator .volute-left,
+    .ornamental-separator .volute-right {
+        width: 40px;
+        height: 30px;
+    }
+}

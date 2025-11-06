@@ -5,7 +5,6 @@ const eventDate = new Date('2026-02-14T19:00:00').getTime();
 const daysElement = document.getElementById('days');
 const hoursElement = document.getElementById('hours');
 const minutesElement = document.getElementById('minutes');
-const secondsElement = document.getElementById('seconds');
 const rsvpForm = document.getElementById('rsvpForm');
 const successMessage = document.getElementById('successMessage');
 const musicToggle = document.getElementById('musicToggle');
@@ -21,18 +20,15 @@ function updateCountdown() {
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
         daysElement.textContent = String(days).padStart(2, '0');
         hoursElement.textContent = String(hours).padStart(2, '0');
         minutesElement.textContent = String(minutes).padStart(2, '0');
-        secondsElement.textContent = String(seconds).padStart(2, '0');
     } else {
         // Event has started or passed
         daysElement.textContent = '00';
         hoursElement.textContent = '00';
         minutesElement.textContent = '00';
-        secondsElement.textContent = '00';
         
         // Update hero content
         const heroName = document.querySelector('.hero-name');
@@ -311,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         // Initialize countdown timer
         updateCountdown();
-        setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 60000); // Update every minute since we don't show seconds anymore
         
         // Initialize hero animations
         initializeHeroAnimations();
