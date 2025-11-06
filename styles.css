@@ -1072,7 +1072,7 @@ body.header-visible {
 
 .header-nav {
     display: flex;
-    gap: 30px;
+    gap: 25px;
     align-items: center;
 }
 
@@ -1080,7 +1080,7 @@ body.header-visible {
     color: #D4AF37;
     text-decoration: none;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     padding: 8px 12px;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -1103,11 +1103,11 @@ body.header-visible {
     }
     
     .header-nav {
-        gap: 20px;
+        gap: 18px;
     }
     
     .header-link {
-        font-size: 14px;
+        font-size: 13px;
         padding: 6px 8px;
     }
     
@@ -1118,11 +1118,11 @@ body.header-visible {
 
 @media (max-width: 480px) {
     .header-nav {
-        gap: 15px;
+        gap: 14px;
     }
     
     .header-link {
-        font-size: 13px;
+        font-size: 12px;
         padding: 5px 6px;
     }
 }
