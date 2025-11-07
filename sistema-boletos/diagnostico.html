@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico del Sistema - XV Años de Camila</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .test-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+        .test-section.success { background: #d4edda; border-color: #c3e6cb; }
+        .test-section.error { background: #f8d7da; border-color: #f5c6cb; }
+        .test-section.warning { background: #fff3cd; border-color: #ffeaa7; }
+        button { background: #D4AF37; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; margin: 0.5rem; }
+        button:hover { background: #B8941F; }
+        .result { margin-top: 1rem; padding: 0.5rem; background: #f8f9fa; border-radius: 3px; font-family: monospace; }
+        pre { background: #f8f9fa; padding: 1rem; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Diagnóstico del Sistema de Boletos</h1>
+        <p>Esta herramienta te ayuda a identificar problemas con la configuración del sistema.</p>
+
+        <!-- Test 1: Verificar URLs -->
+        <div class="test-section">
+            <h3>1. Verificar Configuración de URLs</h3>
+            <button onclick="testUrls()">Ejecutar Prueba</button>
+            <div id="urlResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 2: Probar Conexión con Google Apps Script -->
+        <div class="test-section">
+            <h3>2. Probar Conexión con Google Apps Script</h3>
+            <button onclick="testGoogleScript()">Probar Conexión</button>
+            <div id="scriptResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 3: Enviar Datos de Prueba -->
+        <div class="test-section">
+            <h3>3. Enviar Datos de Prueba</h3>
+            <button onclick="testSendData()">Enviar Datos</button>
+            <div id="dataResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 4: Verificar Google Sheets -->
+        <div class="test-section">
+            <h3>4. Verificar Google Sheets</h3>
+            <p>Abre tu Google Sheets y ve a la hoja "Confirmaciones" para verificar que se guarden los datos.</p>
+            <a href="https://docs.google.com/spreadsheets/d/1lNvGPhE7tKa4HrUjny3YpdD90pRy6kUGm9yZxe2a-sM" target="_blank">
+                <button>Ir a Google Sheets</button>
+            </a>
+        </div>
+
+        <!-- Información de Configuración -->
+        <div class="test-section">
+            <h3>📋 Información de Configuración</h3>
+            <pre>SPREADSHEET_ID: 1lNvGPhE7tKa4HrUjny3YpdD90pRy6kUGm9yZxe2a-sM
+URL_WebApp: https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec</pre>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec';
+
+        function testUrls() {
+            const result = document.getElementById('urlResult');
+            result.style.display = 'block';
+            result.innerHTML = 'Verificando URLs...';
+
+            const checks = [
+                { name: 'SPREADSHEET_ID', value: '1lNvGPhE7tKa4HrUjny3YpdD90pRy6kUGm9yZxe2a-sM', valid: true },
+                { name: 'URL Web App', value: SCRIPT_URL, valid: SCRIPT_URL.includes('script.google.com') }
+            ];
+
+            let html = '<h4>Resultado:</h4><ul>';
+            checks.forEach(check => {
+                const status = check.valid ? '✅' : '❌';
+                html += `<li>${status} ${check.name}: ${check.value}</li>`;
+            });
+            html += '</ul>';
+            result.innerHTML = html;
+            result.parentNode.className = 'test-section ' + (checks.every(c => c.valid) ? 'success' : 'error');
+        }
+
+        async function testGoogleScript() {
+            const result = document.getElementById('scriptResult');
+            result.style.display = 'block';
+            result.innerHTML = 'Probando conexión con Google Apps Script...';
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'GET'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    result.innerHTML = `<h4>✅ Conexión Exitosa</h4><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    result.parentNode.className = 'test-section success';
+                } else {
+                    result.innerHTML = `<h4>❌ Error HTTP: ${response.status}</h4>`;
+                    result.parentNode.className = 'test-section error';
+                }
+            } catch (error) {
+                result.innerHTML = `<h4>❌ Error de Conexión</h4><p>${error.message}</p>`;
+                result.parentNode.className = 'test-section error';
+            }
+        }
+
+        async function testSendData() {
+            const result = document.getElementById('dataResult');
+            result.style.display = 'block';
+            result.innerHTML = 'Enviando datos de prueba...';
+
+            const testData = {
+                timestamp: new Date().toISOString(),
+                nombre: 'Prueba Sistema',
+                email: 'test@ejemplo.com',
+                telefono: '555-0000',
+                asistencia: 'si',
+                acompañantes: '0',
+                nombres_acompanantes: '',
+                observaciones: 'Prueba de diagnóstico',
+                fecha_evento: '15 de Diciembre, 2025',
+                hora_evento: '19:00',
+                lugar_evento: 'Salón de Eventos Los Rosales',
+                ticket_id: 'DIAGNOSTICO_' + Date.now(),
+                estado: 'prueba'
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.innerHTML = `<h4>✅ Datos Enviados Exitosamente</h4><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    result.parentNode.className = 'test-section success';
+                } else {
+                    result.innerHTML = `<h4>❌ Error en el Envío</h4><p>${data.error}</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    result.parentNode.className = 'test-section error';
+                }
+            } catch (error) {
+                result.innerHTML = `<h4>❌ Error de Red</h4><p>${error.message}</p>`;
+                result.parentNode.className = 'test-section error';
+            }
+        }
+    </script>
+</body>
+</html>
