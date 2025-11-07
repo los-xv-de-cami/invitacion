@@ -179,12 +179,19 @@ class GuestForm {
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec';
         
         try {
+            // Convertir datos a FormData (formato que funciona con el Web App)
+            const formData = new FormData();
+            for (const [key, value] of Object.entries(data)) {
+                if (Array.isArray(value)) {
+                    formData.append(key, value.join(', '));
+                } else {
+                    formData.append(key, value.toString());
+                }
+            }
+
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+                body: formData
             });
 
             if (!response.ok) {
