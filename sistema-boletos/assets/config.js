@@ -52,9 +52,9 @@ const EVENT_CONFIG = {
     // GOOGLE SHEETS Y APPS SCRIPT
     // ========================================
     sheets: {
-        spreadsheetId: "",     // ACTUALIZAR: ID de tu Google Sheets
+        spreadsheetId: "1lNvGPhE7tKa4HrUjny3YpdD90pRy6kUGm9yZxe2a-sM",     // ACTUALIZAR: ID de tu Google Sheets
         sheetName: "Confirmaciones",
-        scriptUrl: ""          // ACTUALIZAR: URL del Web App de Apps Script
+        scriptUrl: "https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec"          // ACTUALIZAR: URL del Web App de Apps Script
     },
     
     // ========================================
