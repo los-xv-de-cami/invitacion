@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test FormData - XV Camila</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test FormData - Verificación Completa</h1>
+    <p>Este test verifica que el sistema completo funcione correctamente con FormData.</p>
+    
+    <div id="results"></div>
+    
+    <button onclick="runAllTests()">🚀 Ejecutar Todos los Tests</button>
+    <button onclick="testFormData()">📤 Test FormData</button>
+    <button onclick="testFullForm()">📋 Test Formulario Completo</button>
+    
+    <script>
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec';
+        
+        function addResult(title, status, message, details = '') {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${status}`;
+            
+            resultDiv.innerHTML = `
+                <h3>${title}</h3>
+                <p><strong>Estado:</strong> ${status.toUpperCase()}</p>
+                <p><strong>Mensaje:</strong> ${message}</p>
+                ${details ? `<pre>${details}</pre>` : ''}
+            `;
+            
+            resultsDiv.appendChild(resultDiv);
+        }
+        
+        async function testFormData() {
+            try {
+                addResult('Test FormData', 'info', 'Enviando datos de prueba con FormData...');
+                
+                // Crear FormData exactamente como el formulario
+                const formData = new FormData();
+                formData.append('id_invitado', 'TEST_' + Date.now());
+                formData.append('nombre', 'Test Usuario FormData');
+                formData.append('email', 'test.formdata@example.com');
+                formData.append('telefono', '555-FORMDATA');
+                formData.append('asistencia', 'si');
+                formData.append('num_acompanantes', '1');
+                formData.append('nombres_acompanantes', 'Usuario de Prueba');
+                formData.append('observaciones', 'Test de FormData - ' + new Date().toISOString());
+                formData.append('fecha_confirmacion', new Date().toISOString());
+                formData.append('estado', 'pendiente');
+                
+                console.log('Enviando FormData:', Object.fromEntries(formData));
+                
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    addResult('Test FormData', 'success', 
+                        '✅ FormData enviado y procesado correctamente', 
+                        JSON.stringify(result, null, 2)
+                    );
+                } else {
+                    addResult('Test FormData', 'error', 
+                        `❌ Error: ${result.error}`, 
+                        JSON.stringify(result, null, 2)
+                    );
+                }
+                
+            } catch (error) {
+                addResult('Test FormData', 'error', 
+                    `❌ Error de red: ${error.message}`, 
+                    error.stack
+                );
+            }
+        }
+        
+        async function testFullForm() {
+            try {
+                addResult('Test Formulario Completo', 'info', 'Simulando envío de formulario completo...');
+                
+                // Datos del formulario completo
+                const formData = new FormData();
+                formData.append('id_invitado', 'FULL_TEST_' + Date.now());
+                formData.append('nombre', 'María García López');
+                formData.append('email', 'maria.garcia@email.com');
+                formData.append('telefono', '+52 55 1234 5678');
+                formData.append('asistencia', 'si');
+                formData.append('num_acompanantes', '3');
+                formData.append('nombres_acompanantes', 'Carlos García, Ana García, Pedro López');
+                formData.append('observaciones', 'No puedo comer frutos secos. Llegaremos temprano.');
+                formData.append('fecha_confirmacion', new Date().toISOString());
+                formData.append('estado', 'confirmado_con_acompanantes');
+                
+                console.log('Enviando formulario completo:', Object.fromEntries(formData));
+                
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    addResult('Test Formulario Completo', 'success', 
+                        '✅ Formulario completo enviado y procesado correctamente', 
+                        JSON.stringify(result, null, 2)
+                    );
+                } else {
+                    addResult('Test Formulario Completo', 'error', 
+                        `❌ Error: ${result.error}`, 
+                        JSON.stringify(result, null, 2)
+                    );
+                }
+                
+            } catch (error) {
+                addResult('Test Formulario Completo', 'error', 
+                    `❌ Error de red: ${error.message}`, 
+                    error.stack
+                );
+            }
+        }
+        
+        async function runAllTests() {
+            document.getElementById('results').innerHTML = '';
+            addResult('Iniciando Tests', 'info', 'Ejecutando todos los tests en secuencia...');
+            
+            await testFormData();
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Pausa entre tests
+            
+            await testFullForm();
+            
+            addResult('Tests Completados', 'info', 'Todos los tests han sido ejecutados. Revisa los resultados arriba.');
+        }
+        
+        // Ejecutar test automático al cargar
+        window.onload = function() {
+            setTimeout(runAllTests, 500);
+        };
+    </script>
+</body>
+</html>
