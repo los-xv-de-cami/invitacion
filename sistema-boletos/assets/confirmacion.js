@@ -217,7 +217,7 @@ class ConfirmacionAsistencia {
 
     async sendToGoogleSheets(data) {
         // Configuración de Google Apps Script Web App
-        const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/1lNvGPhE7tKa4HrUjny3YpdD90pRy6kUGm9yZxe2a-sM/exec';
         
         try {
             const response = await fetch(SCRIPT_URL, {
