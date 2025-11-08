@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Panel Admin - XV Camila</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Panel de Administración - Verificación</h1>
+    <p>Este test verifica que el panel de administración puede cargar datos desde Google Sheets.</p>
+    
+    <button onclick="testAdminConnection()">🔌 Probar Conexión Admin</button>
+    <button onclick="testLoadAllData()">📊 Cargar Todos los Datos</button>
+    <button onclick="testMockData()">📋 Probar Datos Mock</button>
+    <button onclick="openAdminPanel()">🎛️ Abrir Panel Admin</button>
+    
+    <div id="results"></div>
+    
+    <script>
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec';
+        
+        function addResult(title, status, message, details = '') {
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-section ${status}`;
+            
+            const icon = status === 'success' ? '✅' : status === 'error' ? '❌' : 'ℹ️';
+            
+            resultDiv.innerHTML = `
+                <h3>${icon} ${title}</h3>
+                <p><strong>Estado:</strong> ${status.toUpperCase()}</p>
+                <p><strong>Mensaje:</strong> ${message}</p>
+                ${details ? `<pre>${details}</pre>` : ''}
+            `;
+            
+            resultsDiv.appendChild(resultDiv);
+        }
+        
+        async function testAdminConnection() {
+            addResult('Test Conexión Admin', 'info', 'Probando conexión con Google Apps Script...');
+            
+            try {
+                const response = await fetch(`${WEB_APP_URL}?action=testConnection`, {
+                    method: 'GET'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    addResult('Test Conexión Admin', 'success', 
+                        '✅ Conexión exitosa', 
+                        JSON.stringify(result, null, 2)
+                    );
+                } else {
+                    addResult('Test Conexión Admin', 'error', 
+                        `❌ Error: ${result.error}`, 
+                        JSON.stringify(result, null, 2)
+                    );
+                }
+                
+            } catch (error) {
+                addResult('Test Conexión Admin', 'error', 
+                    `❌ Error de red: ${error.message}`, 
+                    error.stack
+                );
+            }
+        }
+        
+        async function testLoadAllData() {
+            addResult('Test Cargar Datos', 'info', 'Cargando todos los datos desde Google Sheets...');
+            
+            try {
+                const response = await fetch(`${WEB_APP_URL}?action=getAllData`, {
+                    method: 'GET'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    addResult('Test Cargar Datos', 'success', 
+                        `✅ Datos cargados exitosamente (${result.totalRows} filas)`, 
+                        `Headers: ${result.data[0].join(', ')}\n\n` +
+                        `Filas de datos: ${result.data.length - 1}\n\n` +
+                        `Primeros datos:\n${result.data.slice(1, 4).map(row => row.join(' | ')).join('\n')}`
+                    );
+                } else {
+                    addResult('Test Cargar Datos', 'error', 
+                        `❌ Error: ${result.error}`, 
+                        JSON.stringify(result, null, 2)
+                    );
+                }
+                
+            } catch (error) {
+                addResult('Test Cargar Datos', 'error', 
+                    `❌ Error de red: ${error.message}`, 
+                    error.stack
+                );
+            }
+        }
+        
+        function testMockData() {
+            addResult('Test Datos Mock', 'info', 'Verificando datos de prueba...');
+            
+            // Simular los datos que usaría el panel
+            const mockGuests = [
+                {
+                    id: '1',
+                    nombre: 'María González',
+                    email: 'maria.gonzalez@email.com',
+                    telefono: '555-0123',
+                    asistencia: 'si',
+                    num_acompanantes: '2',
+                    nombres_acompanantes: 'Juan González, Ana González',
+                    fecha_confirmacion: '2025-01-15T10:30:00Z',
+                    estado: 'confirmado'
+                }
+            ];
+            
+            addResult('Test Datos Mock', 'success', 
+                '✅ Datos de prueba generados correctamente', 
+                JSON.stringify(mockGuests, null, 2)
+            );
+        }
+        
+        function openAdminPanel() {
+            addResult('Panel Admin', 'info', 'Abriendo panel de administración...');
+            window.open('admin/index.html', '_blank');
+            
+            addResult('Panel Admin', 'info', 
+                'Panel abierto en nueva ventana', 
+                'INSTRUCCIONES:\n1. Verifica que no aparezcan errores\n2. Los datos deberían cargarse automáticamente\n3. El dashboard debería mostrar estadísticas\n4. La tabla de confirmaciones debería llenarse'
+            );
+        }
+        
+        // Ejecutar tests automáticamente al cargar
+        window.onload = function() {
+            setTimeout(() => {
+                testAdminConnection();
+                setTimeout(() => testLoadAllData(), 2000);
+            }, 500);
+        };
+    </script>
+</body>
+</html>
