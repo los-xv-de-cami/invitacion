@@ -670,7 +670,7 @@ class AdminPanel {
         
         // Gráfico de acompañantes
         const companionsData = [0, 1, 2, 3, 4, 5]; // 0-5 acompañantes
-        const counts = companions.map(num => 
+        const counts = companionsData.map(num => 
             this.guests.filter(g => parseInt(g.num_acompanantes) === num).length
         );
         
@@ -690,7 +690,7 @@ class AdminPanel {
             ctx.fillStyle = '#2C3E50';
             ctx.font = '12px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText(num.toString(), x + barWidth/2, 195);
+            ctx.fillText(companionsData[index].toString(), x + barWidth/2, 195);
         });
     }
 
@@ -868,7 +868,7 @@ class AdminPanel {
     // ========================================
 
     async loadGuestsFromGoogleSheets() {
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwJC0xlcc07iB--PzGMDzU08e1FP8nUg1ZOYryuohHxyTkwg4WQAMseA3CoB8p-rKt7/exec';
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec';
         
         try {
             // Realizar petición GET para obtener datos
