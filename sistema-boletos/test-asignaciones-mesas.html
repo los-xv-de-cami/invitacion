@@ -170,7 +170,8 @@
                     invitadoPrueba = datosCargados.find(row => row[1] && row[4] === 'si'); // nombre y asistencia sí
                     
                     if (invitadoPrueba) {
-                        mesaOriginal = row[10] || ''; // mesa_asignada original
+                        // mesaOriginal = row[10] || ''; // mesa_asignada original // Bug
+                        mesaOriginal = invitadoPrueba[10] || ''; // Uso correcto de la variable
                         
                         resultado.innerHTML = `
                             <div class="success">
