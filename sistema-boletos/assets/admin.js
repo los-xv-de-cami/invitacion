@@ -390,16 +390,17 @@ class AdminPanel {
         if (!container) return;
 
         container.innerHTML = this.tables.map(table => {
-            const isOccupied = table.guests.length > 0;
-            const isFull = table.guests.length >= table.capacity;
+            const totalGuests = this.getTableTotalGuests(table);
+            const isOccupied = totalGuests > 0;
+            const isFull = totalGuests >= table.capacity;
             const cssClass = isFull ? 'full' : (isOccupied ? 'occupied' : '');
 
             return `
                 <div class="mesa-card ${cssClass}" data-table="${table.number}">
                     <div class="mesa-number">Mesa ${table.number}</div>
-                    <div class="mesa-capacity">${table.guests.length}/${table.capacity} personas</div>
+                    <div class="mesa-capacity">${totalGuests}/${table.capacity} personas</div>
                     <div class="mesa-guests">
-                        ${table.guests.length > 0 
+                        ${totalGuests > 0 
                             ? table.guests.slice(0, 3).map(g => g.nombre.split(' ')[0]).join(', ') +
                               (table.guests.length > 3 ? '...' : '')
                             : 'Sin asignar'
@@ -422,16 +423,26 @@ class AdminPanel {
             `).join('');
     }
 
+    getTableTotalGuests(table) {
+        return table.guests.reduce((total, group) => total + group.total, 0);
+    }
+
     updateTableSelect() {
         const select = document.getElementById('tableSelect');
         if (!select) return;
 
-        const availableTables = this.tables.filter(table => table.guests.length < table.capacity);
+        const availableTables = this.tables.filter(table => {
+            const totalGuests = this.getTableTotalGuests(table);
+            return totalGuests < table.capacity;
+        });
         
         select.innerHTML = '<option value="">Seleccionar mesa</option>' +
-            availableTables.map(table => `
-                <option value="${table.number}">Mesa ${table.number} (${table.guests.length}/${table.capacity})</option>
-            `).join('');
+            availableTables.map(table => {
+                const totalGuests = this.getTableTotalGuests(table);
+                return `
+                    <option value="${table.number}">Mesa ${table.number} (${totalGuests}/${table.capacity})</option>
+                `;
+            }).join('');
     }
 
     assignGuestToTable() {
@@ -452,8 +463,10 @@ class AdminPanel {
         }
 
         const totalGuests = parseInt(guest.num_acompanantes) + 1;
-        if (table.guests.length + totalGuests > table.capacity) {
-            this.showError('No hay suficiente espacio en esta mesa');
+        const currentTableGuests = this.getTableTotalGuests(table);
+        
+        if (currentTableGuests + totalGuests > table.capacity) {
+            this.showError(`No hay suficiente espacio en esta mesa. Capacidad: ${table.capacity}, actuales: ${currentTableGuests}, requeridos: ${totalGuests}`);
             return;
         }
 
@@ -481,9 +494,10 @@ class AdminPanel {
             const totalGuests = parseInt(guest.num_acompanantes) + 1;
             
             // Buscar mesa disponible
-            const availableTable = this.tables.find(table => 
-                table.guests.length + totalGuests <= table.capacity
-            );
+            const availableTable = this.tables.find(table => {
+                const currentGuests = this.getTableTotalGuests(table);
+                return currentGuests + totalGuests <= table.capacity;
+            });
 
             if (availableTable) {
                 guest.mesa_asignada = availableTable.number;
