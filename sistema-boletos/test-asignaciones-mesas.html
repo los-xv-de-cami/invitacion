@@ -264,7 +264,8 @@
                     const invitadoActualizado = datosNuevos.find(row => row[0] === invitadoPrueba[0]);
                     
                     if (invitadoActualizado) {
-                        const mesaActual = invitadoActualizado[10] || '';
+                        //const mesaActual = invitadoActualizado[10] || '';
+                        const mesaActual = String(invitadoActualizado[10] || '').trim();
                         
                         if (mesaActual === '25') {
                             resultado.innerHTML = `
