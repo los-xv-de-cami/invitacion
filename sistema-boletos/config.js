@@ -71,7 +71,7 @@ const EVENT_CONFIG = {
         
         // 👇👇👇 PEGAR TU URL DEL WEB APP AQUÍ 👇👇👇
         // Reemplaza "TU_URL_WEB_APP_COMPLETA" con tu URL real
-        scriptUrl: "https://script.google.com/macros/s/AKfycbxnrOFAIQ9nGKrdw6YcR5_mmM8bLEPlHE1ab0eqAyEqwzyusi4AnEsPr0xcgBXVn5QW/exec",        // ✅ CONFIGURADO CON TU URL
+        scriptUrl: "https://script.google.com/macros/s/AKfycbzoI8RJLKUc8Z_GUAIXX_CR0VNFT_3XKyU7LlD6_54QxAXiCzo3isPOu7yxZVmR0so/exec",        // ✅ CONFIGURADO CON TU URL
         
         sheetName: "Confirmaciones"
     },
