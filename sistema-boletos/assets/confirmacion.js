@@ -240,7 +240,7 @@ class ConfirmacionAsistencia {
 
     async sendToGoogleSheets(data) {
         // Configuración de Google Apps Script Web App
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxiKynBLC2VeqishTDHFYtnhASnefjsPI-4vmIjOE1EQuMKAj7jEiOYkwweT7L8JndL/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzoI8RJLKUc8Z_GUAIXX_CR0VNFT_3XKyU7LlD6_54QxAXiCzo3isPOu7yxZVmR0so/exec';
         
         try {
             // Convertir datos a FormData (formato que funciona con el Web App)
