@@ -160,10 +160,7 @@ async function loadGuests() {
             .map(guest => ({
                 id: guest.id,
                 name: guest.name,
-                companions: guest.companions ? 
-                    (typeof guest.companions === 'string' ? 
-                        guest.companions.split(',').map(c => c.trim()).filter(c => c) :
-                        Array.from({ length: parseInt(guest.companions) }, (_, i) => `Acompañante ${i + 1}`)
+                companions: guest.companions ? guest.companions.split(',').map(c => c.trim()).filter(c => c) : []
                     ) : []
             }));
         
@@ -715,3 +712,4 @@ if (window.location.hostname === 'localhost' || window.location.search.includes(
             console.log('🐛 Debug panel available - click the 🐛 button to open');
         }
     }, 1000);
+}
