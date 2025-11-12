@@ -10,7 +10,7 @@ const state = {
 };
 
 // Constants
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLXYZxL8lmdXvzxK98ck_8DXyfXhHJC5cXnwCGFXWHZKSFs39Ol4GEn_QraISKNFVaZg/exec'; // Replace with your deployed Apps Script URL
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJAuXjjzKQnIJSqtSaVnSC-c4pSd1nhrxIDKqraZx8LFnbceaRAy7xYIwAHatPLE3COQ/exec'; // Replace with your deployed Apps Script URL
 const LOAD_GUEST_EVENT = 'loadGuests';
 const SAVE_ASSIGNMENTS_EVENT = 'saveAssignments';
 
