@@ -101,11 +101,11 @@ function setupEventListeners() {
     elements.saveButton.addEventListener('click', saveChanges);
     
     // Refresh data every 30 seconds for multi-user support
-    setInterval(async () => {
-        await loadGuests();
-        renderGuestList();
-        renderTables();
-    }, 30000);
+   // setInterval(async () => {
+   //     await loadGuests();
+   //     renderGuestList();
+   //     renderTables();
+   // }, 30000);
 }
 
 async function loadGuests() {
