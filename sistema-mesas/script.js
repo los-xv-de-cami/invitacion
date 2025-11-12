@@ -1,4 +1,4 @@
-// Application State gh
+// Application State
 const state = {
     guests: [],
     assignments: new Map(), // guestId -> tableNumber
@@ -161,7 +161,6 @@ async function loadGuests() {
                 id: guest.id,
                 name: guest.name,
                 companions: guest.companions ? guest.companions.split(',').map(c => c.trim()).filter(c => c) : []
-                    ) : []
             }));
         
         // Load existing assignments
