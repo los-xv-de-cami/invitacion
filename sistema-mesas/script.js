@@ -372,7 +372,7 @@ async function saveChanges() {
 }
 
 // Función para remover invitado de mesa (para cancelaciones)
-function removeGuestFromTable(guestId) {
+async function removeGuestFromTable(guestId) {
     if (state.assignments.has(guestId)) {
         const tableNumber = state.assignments.get(guestId);
         const table = state.tables[tableNumber - 1];
@@ -390,6 +390,9 @@ function removeGuestFromTable(guestId) {
         const guest = state.guests.find(g => g.id === guestId);
         if (guest) {
             showToast(`${guest.name} removido de Mesa ${tableNumber}`);
+            
+            // Guardar cambios automáticamente
+            await saveChanges();
         }
     } else {
         console.warn('Invitado no encontrado en asignaciones:', guestId);
