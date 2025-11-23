@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Asistencia - XV Años de Camila</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo-camila.png" alt="Logo XV Años de Camila" class="logo">
+            </div>
+            <h1 class="main-title">Confirmación de Asistencia</h1>
+            <p class="subtitle">XV Años de Camila</p>
+        </div>
+    </header>
 
+    <main class="main-content">
+        <div class="form-container">
+            <form id="attendanceForm" class="attendance-form">
+                <div class="form-section">
+                    <h2 class="section-title">Información Personal</h2>
+                    <div class="underline"></div>
+                    
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono" class="form-label">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observaciones" class="form-label">Observaciones (opcional)</label>
+                        <textarea id="observaciones" name="observaciones" class="form-textarea" placeholder="Alguna alergia, preferencia alimentaria o comentario especial..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="section-title">Información de Asistencia</h2>
+                    <div class="underline"></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">¿Asistiré al evento?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="asistire_si" name="asistire" value="Si" required>
+                                <label for="asistire_si" class="radio-label">Sí, confirmo mi asistencia</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="asistire_no" name="asistire" value="No" required>
+                                <label for="asistire_no" class="radio-label">No podré asistir</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Confirmar Asistencia
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>¡Confirmación Exitosa!</h3>
+            <p>Tu confirmación de asistencia ha sido registrada correctamente.</p>
+            <button onclick="closeModal()" class="modal-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
