@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
 
         // Enviar datos a Google Apps Script
-        fetch('https://script.google.com/macros/s/AKfycbzLdIPNXiJkd-Kd_QFtQ0YFAZM-IGSjqZZdpLpfBQDHt3lgIJB2vX5Y7j3sGGUDwBBi/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzBbn5o_bWVFfOekHZ_q9skKrT82K-7kLtkzOH5Y1LP2nMWNpTh1CzHqRPGvtKU3zpapA/exec', {
             method: 'POST',
             body: new URLSearchParams(data)
         })
