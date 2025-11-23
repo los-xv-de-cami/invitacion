@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
 
         // URL real del Apps Script - ¡ACTUALIZADA!
-        fetch('https://script.google.com/macros/s/AKfycbxSU3OotnvCQyMnCX5Zhr92KdaDdViun8Co1uKq6d5I9NKwhrjIzcdsoY33mwXH0u7oGA/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbwr_aVNL9rSaEw-vdo4Qo-lsIh33YSfBjd8fQyog-Ui1xLOpLsMpItp55dik4XiT14dJg/exec', {
             method: 'POST',
             body: new URLSearchParams(data)
         })
