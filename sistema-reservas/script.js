@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
 
-        // Enviar datos a Google Apps Script
+        // URL real del Apps Script - ¡ACTUALIZADA!
         fetch('https://script.google.com/macros/s/AKfycbzBbn5o_bWVFfOekHZ_q9skKrT82K-7kLtkzOH5Y1LP2nMWNpTh1CzHqRPGvtKU3zpapA/exec', {
             method: 'POST',
             body: new URLSearchParams(data)
