@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XV Años de Camila - Carrusel Funcional</title>
+    <!-- CSS DEL CARRUSEL EMBEBIDO PARA EVITAR PROBLEMAS -->
+    <style>
+        /* Reset y bases */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFDFD;
+            color: #212932;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Títulos */
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 64px;
+            color: #212932;
+        }
+        
+        /* CARRUSEL STYLES - ESTOS SON CRÍTICOS */
+        .image-carousel {
+            margin-top: 64px;
+            position: relative;
+            margin-bottom: 100px;
+        }
+        
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0px 20px 60px rgba(168, 197, 229, 0.2);
+        }
+        
+        /* CRÍTICO: Esta regla hace que las imágenes estén en línea horizontal */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        
+        /* CRÍTICO: Cada slide ocupa el 100% del ancho del contenedor */
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Estilos de imagen */
+        .carousel-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        
+        /* Caption con gradiente */
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 48px 32px 32px;
+        }
+        
+        .carousel-caption h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .carousel-caption p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Botones de navegación */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-btn-prev {
+            left: 24px;
+        }
+        
+        .carousel-btn-next {
+            right: 24px;
+        }
+        
+        .carousel-btn svg {
+            width: 24px;
+            height: 24px;
+            color: #333;
+        }
+        
+        /* Indicadores */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(168, 197, 229, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: #B4A5E8;
+            transform: scale(1.2);
+        }
+        
+        /* Barra de progreso */
+        .carousel-progress {
+            width: 100%;
+            height: 3px;
+            background: rgba(168, 197, 229, 0.2);
+            margin-top: 24px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #B4A5E8, #8B7CC7);
+            width: 0%;
+            transition: width 0.1s linear;
+            border-radius: 2px;
+        }
+        
+        /* Placeholder para imágenes que faltan */
+        .placeholder-slide {
+            background: linear-gradient(45deg, #B4A5E8, #8B7CC7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            height: 500px;
+        }
+        
+        .placeholder-content h3 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .placeholder-content p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-image {
+                height: 300px;
+            }
+            
+            .placeholder-slide {
+                height: 300px;
+            }
+            
+            .carousel-caption {
+                padding: 32px 24px 24px;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 22px;
+            }
+            
+            .carousel-btn {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .carousel-btn-prev {
+                left: 12px;
+            }
+            
+            .carousel-btn-next {
+                right: 12px;
+            }
+        }
+    </style>
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">XV Años de Camila</h1>
+        
+        <!-- CARRUSEL COMPLETO Y FUNCIONAL -->
+        <div class="image-carousel">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- 10 Slides para testing -->
+                    <div class="carousel-slide active placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Mi XV Años</h3>
+                            <p>Preparándome para este día especial</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Sesión de Fotos</h3>
+                            <p>Capturando los mejores momentos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Mi Familia</h3>
+                            <p>El apoyo más importante</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Mis Amigas</h3>
+                            <p>La celebración perfecta</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Detalles Únicos</h3>
+                            <p>Cada momento cuenta</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Momentos Divertidos</h3>
+                            <p>Risas y aventuras</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>La Preparación</h3>
+                            <p>Detrás de escenas</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Mi Vestido</h3>
+                            <p>El vestido de mis sueños</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>Momentos Especiales</h3>
+                            <p>Recuerdos únicos</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide placeholder-slide">
+                        <div class="placeholder-content">
+                            <h3>¡Ya Llegó el Día!</h3>
+                            <p>La celebración de mis sueños</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn carousel-btn-prev" id="prevBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15,18 9,12 15,6"/>
+                    </svg>
+                </button>
+                <button class="carousel-btn carousel-btn-next" id="nextBtn">
+                    <svg width="24" height"24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9,18 15,12 9,6"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="carousel-indicators" id="carouselIndicators">
+            </div>
+            
+            <div class="carousel-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+        
+        <!-- Mensaje de verificación -->
+        <div style="text-align: center; margin: 40px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h3 style="color: #28a745; margin-bottom: 10px;">✅ Carrusel Funcionando</h3>
+            <p style="color: #6c757d;">Si ves las imágenes en horizontal (no apiladas), el carrusel está funcionando correctamente.</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DEL CARRUSEL -->
+    <script>
+        // Elements
+        const carouselTrack = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('carouselIndicators');
+        const progressBar = document.getElementById('progressBar');
+
+        // State
+        let currentSlide = 0;
+        let totalSlides = 0;
+        let carouselDuration = 4000;
+        let isPaused = false;
+
+        class ImageCarousel {
+            constructor() {
+                this.startTime = Date.now();
+                this.init();
+            }
+
+            init() {
+                if (!carouselTrack) {
+                    console.error('Carrusel no encontrado');
+                    return;
+                }
+                
+                this.setupCarousel();
+                this.createIndicators();
+                this.bindEvents();
+                this.startAutoplay();
+                console.log('Carrusel inicializado correctamente');
+            }
+
+            setupCarousel() {
+                this.slides = document.querySelectorAll('.carousel-slide');
+                totalSlides = this.slides.length;
+                console.log(`Carrusel configurado con ${totalSlides} slides`);
+            }
+
+            createIndicators() {
+                if (!indicatorsContainer) return;
+                
+                indicatorsContainer.innerHTML = '';
+                
+                for (let i = 0; i < totalSlides; i++) {
+                    const indicator = document.createElement('button');
+                    indicator.className = 'carousel-indicator';
+                    indicator.setAttribute('data-slide', i);
+                    if (i === 0) indicator.classList.add('active');
+                    
+                    indicator.addEventListener('click', () => this.goToSlide(i));
+                    indicatorsContainer.appendChild(indicator);
+                }
+            }
+
+            bindEvents() {
+                if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
+                if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
+
+                const carouselContainer = document.querySelector('.carousel-container');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', () => this.pause());
+                    carouselContainer.addEventListener('mouseleave', () => this.resume());
+                }
+            }
+
+            goToSlide(slideIndex) {
+                if (slideIndex < 0 || slideIndex >= totalSlides) return;
+                
+                currentSlide = slideIndex;
+                this.updateCarousel();
+                this.resetProgress();
+                console.log(`Navegando a slide ${currentSlide}`);
+            }
+
+            nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                this.updateCarousel();
+                this.resetProgress();
+            }
+
+            prevSlide() {
+                currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+                this.updateCarousel();
+                this.resetProgress();
+            }
+
+            updateCarousel() {
+                const translateX = -currentSlide * 100;
+                carouselTrack.style.transform = `translateX(${translateX}%)`;
+
+                const indicators = document.querySelectorAll('.carousel-indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+
+                this.slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            resetProgress() {
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                }
+                this.startTime = Date.now();
+            }
+
+            updateProgress() {
+                if (!isPaused || !progressBar) return;
+                
+                const elapsed = Date.now() - this.startTime;
+                const progress = Math.min((elapsed / carouselDuration) * 100, 100);
+                
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    this.nextSlide();
+                    this.resetProgress();
+                }
+            }
+
+            startAutoplay() {
+                this.stopAutoplay();
+                isPaused = false;
+                this.resetProgress();
+                
+                const animate = () => {
+                    if (!isPaused) {
+                        this.updateProgress();
+                    }
+                    requestAnimationFrame(animate);
+                };
+                requestAnimationFrame(animate);
+            }
+
+            stopAutoplay() {
+                isPaused = true;
+            }
+
+            pause() {
+                isPaused = true;
+            }
+
+            resume() {
+                isPaused = false;
+            }
+        }
+
+        // Inicializar carrusel
+        document.addEventListener('DOMContentLoaded', function() {
+            new ImageCarousel();
+            console.log('🎠 Carrusel cargado');
+        });
+    </script>
+</body>
+</html>
