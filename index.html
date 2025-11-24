@@ -216,66 +216,105 @@
         <div class="container">
             <div class="section-content">
                 <h2 class="section-title">Momentos Especiales</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <span>Foto de Camila</span>
+                
+                <!-- Carrusel de Imágenes -->
+                <div class="image-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Las imágenes se cargarán dinámicamente -->
+                            <div class="carousel-slide active">
+                                <img src="photos/camila-1.jpg" alt="Foto de Camila" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mi XV Años</h3>
+                                    <p>Preparándome para este día especial</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-2.jpg" alt="Sesión de fotos" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Sesión de Fotos</h3>
+                                    <p>Capturando los mejores momentos</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-3.jpg" alt="Con mi familia" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mi Familia</h3>
+                                    <p>El apoyo más importante</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-4.jpg" alt="Con mis amigas" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mis Amigas</h3>
+                                    <p>La celebración perfecta</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-5.jpg" alt="Detalles especiales" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Detalles Únicos</h3>
+                                    <p>Cada momento cuenta</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-6.jpg" alt="Con mis amigas" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Momentos Divertidos</h3>
+                                    <p>Risas y aventuras</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-7.jpg" alt="Preparación especial" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>La Preparación</h3>
+                                    <p>Detrás de escenas</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-8.jpg" alt="Con mi vestido" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mi Vestido</h3>
+                                    <p>El vestido de mis sueños</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-9.jpg" alt="Mis regalos" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Momentos Especiales</h3>
+                                    <p>Recuerdos únicos</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-10.jpg" alt="Celebrando" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>¡Ya Llegó el Día!</h3>
+                                    <p>La celebración de mis sueños</p>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <!-- Controles de navegación -->
+                        <button class="carousel-btn carousel-btn-prev" id="prevBtn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn carousel-btn-next" id="nextBtn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"/>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <span>Preparación</span>
-                        </div>
+                    
+                    <!-- Indicadores de slides -->
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <!-- Se generarán dinámicamente -->
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <span>Familia</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <span>Amigos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <span>Vestido azul claro</span>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <span>Detalles del evento</span>
-                        </div>
+                    
+                    <!-- Contador de progreso -->
+                    <div class="carousel-progress">
+                        <div class="progress-bar" id="progressBar"></div>
                     </div>
                 </div>
             </div>
@@ -325,7 +364,7 @@
                 <h2 class="section-title">Confirma tu Asistencia</h2>
                 <p class="section-subtitle">Para confirmar tu asistencia y recibir tu boleto electrónico, por favor accede al sistema de confirmación</p>
                 <div class="rsvp-button-container">
-                    <a href="sistema-reservas/index.html" class="primary-btn rsvp-button">
+                    <a href="sistema-boletos/index.html" class="primary-btn rsvp-button">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
@@ -381,5 +420,3 @@
     </audio>
 
     <script src="script.js"></script>
-</body>
-</html>
