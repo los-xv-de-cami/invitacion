@@ -10,6 +10,19 @@ const musicToggle = document.getElementById('musicToggle');
 const musicPlayer = document.getElementById('musicPlayer');
 const backgroundMusic = document.getElementById('backgroundMusic');
 
+// Carousel Elements
+const carouselTrack = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const indicatorsContainer = document.getElementById('carouselIndicators');
+const progressBar = document.getElementById('progressBar');
+
+// Carousel State
+let currentSlide = 0;
+let totalSlides = 0;
+let carouselDuration = 4000; // 4 segundos
+let isPaused = false;
+
 // Helper function to safely get elements
 function getElement(id) {
     const element = document.getElementById(id);
@@ -399,10 +412,221 @@ document.addEventListener('DOMContentLoaded', function() {
     updateHeaderVisibility();
 });
 
+// ========================================
+// CARRUSEL DE IMÁGENES AUTOMÁTICO
+// ========================================
+
+class ImageCarousel {
+    constructor() {
+        this.startTime = Date.now();
+        this.carouselInterval = null;
+        this.init();
+    }
+
+    init() {
+        if (!carouselTrack) return;
+        
+        this.setupCarousel();
+        this.createIndicators();
+        this.bindEvents();
+        this.startAutoplay();
+    }
+
+    setupCarousel() {
+        this.slides = document.querySelectorAll('.carousel-slide');
+        totalSlides = this.slides.length;
+        
+        // Precargar imágenes
+        this.preloadImages();
+    }
+
+    preloadImages() {
+        this.slides.forEach(slide => {
+            const img = slide.querySelector('.carousel-image');
+            if (img && img.src) {
+                const image = new Image();
+                image.onload = () => slide.classList.add('loaded');
+                image.src = img.src;
+            }
+        });
+    }
+
+    createIndicators() {
+        if (!indicatorsContainer) return;
+        
+        indicatorsContainer.innerHTML = '';
+        
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('button');
+            indicator.className = 'carousel-indicator';
+            indicator.setAttribute('data-slide', i);
+            if (i === 0) indicator.classList.add('active');
+            
+            indicator.addEventListener('click', () => this.goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+
+    bindEvents() {
+        // Botones de navegación
+        if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
+        if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
+
+        // Pausar al pasar el mouse
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => this.pause());
+            carouselContainer.addEventListener('mouseleave', () => this.resume());
+        }
+
+        // Touch/swipe support para móviles
+        this.addSwipeSupport();
+    }
+
+    addSwipeSupport() {
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (!carouselContainer) return;
+
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isDragging = true;
+        });
+
+        carouselContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+        });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
+
+            // Solo procesar si el movimiento horizontal es mayor que vertical
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (deltaX > 0) {
+                    this.prevSlide();
+                } else {
+                    this.nextSlide();
+                }
+            }
+            
+            isDragging = false;
+        });
+    }
+
+    goToSlide(slideIndex) {
+        if (slideIndex < 0 || slideIndex >= totalSlides) return;
+        
+        currentSlide = slideIndex;
+        this.updateCarousel();
+        this.resetProgress();
+    }
+
+    nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        this.updateCarousel();
+        this.resetProgress();
+    }
+
+    prevSlide() {
+        currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+        this.updateCarousel();
+        this.resetProgress();
+    }
+
+    updateCarousel() {
+        // Actualizar posición del track
+        const translateX = -currentSlide * 100;
+        carouselTrack.style.transform = `translateX(${translateX}%)`;
+
+        // Actualizar indicadores
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+
+        // Animar captions
+        this.slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    resetProgress() {
+        if (progressBar) {
+            progressBar.style.width = '0%';
+        }
+        // Reset start time for proper timing calculation
+        this.startTime = Date.now();
+    }
+
+    updateProgress() {
+        if (!isPaused || !progressBar) return;
+        
+        const elapsed = Date.now() - this.startTime;
+        const progress = Math.min((elapsed / carouselDuration) * 100, 100);
+        
+        progressBar.style.width = `${progress}%`;
+        
+        if (progress >= 100) {
+            this.nextSlide();
+            this.resetProgress();
+        }
+    }
+
+    startAutoplay() {
+        this.stopAutoplay();
+        isPaused = false;
+        this.resetProgress();
+        
+        // Use requestAnimationFrame for smooth updates
+        const animate = () => {
+            if (!isPaused) {
+                this.updateProgress();
+            }
+            requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    }
+
+    stopAutoplay() {
+        isPaused = true;
+        // No need to clear carouselInterval since we're using requestAnimationFrame
+    }
+
+    pause() {
+        isPaused = true;
+        this.stopAutoplay();
+    }
+
+    resume() {
+        isPaused = false;
+        this.startAutoplay();
+    }
+
+    destroy() {
+        this.stopAutoplay();
+    }
+}
+
+// Inicializar carrusel
+document.addEventListener('DOMContentLoaded', function() {
+    new ImageCarousel();
+});
+
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         updateCountdown,
-        scrollToSection
+        scrollToSection,
+        ImageCarousel
     };
 }
