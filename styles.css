@@ -1191,6 +1191,327 @@ body.header-visible {
     }
 }
 
+/* ========================================
+   CARRUSEL DE IMÁGENES - ESTILOS CSS
+   ======================================== */
+
+.image-carousel {
+    max-width: 1000px;
+    margin: 64px auto 0;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 20px 40px rgba(168, 197, 229, 0.25);
+    background: var(--bg-surface);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    transition: opacity 600ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    display: block;
+    transition: transform 600ms ease-in-out;
+}
+
+.carousel-slide.active .carousel-image {
+    transform: scale(1.02);
+}
+
+.carousel-caption {
+    height: 30%;
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--primary-100) 100%);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-top: 3px solid var(--primary-500);
+}
+
+.carousel-caption h3 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.carousel-caption p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Controles de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(44, 62, 80, 0.9);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-btn:hover {
+    background: rgba(44, 62, 80, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn-prev {
+    left: 20px;
+}
+
+.carousel-btn-next {
+    right: 20px;
+}
+
+.carousel-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 300ms ease;
+}
+
+.carousel-btn:hover svg {
+    transform: scale(1.2);
+}
+
+/* Indicadores */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: var(--bg-surface);
+    position: relative;
+    z-index: 5;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border-subtle);
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--primary-500);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-indicator.active::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.carousel-indicator:hover {
+    background: var(--primary-300);
+}
+
+.carousel-indicator.active {
+    background: var(--primary-500);
+}
+
+/* Barra de progreso */
+.carousel-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(168, 197, 229, 0.2);
+    z-index: 15;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-700));
+    width: 0%;
+    transition: width 100ms linear;
+    border-radius: 2px 0 0 2px;
+}
+
+/* Responsive design para el carrusel */
+@media (max-width: 768px) {
+    .image-carousel {
+        margin: 32px auto 0;
+        border-radius: 12px;
+    }
+    
+    .carousel-container {
+        height: 400px;
+    }
+    
+    .carousel-caption {
+        height: 35%;
+        padding: 24px 20px;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .carousel-caption p {
+        font-size: 14px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .carousel-btn-prev {
+        left: 12px;
+    }
+    
+    .carousel-btn-next {
+        right: 12px;
+    }
+    
+    .carousel-indicators {
+        padding: 16px;
+        gap: 8px;
+    }
+    
+    .carousel-indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        padding: 20px 16px;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 20px;
+    }
+    
+    .carousel-caption p {
+        font-size: 13px;
+    }
+}
+
+/* Estados de carga y error para imágenes */
+.carousel-slide:not(.loaded) .carousel-image {
+    background: linear-gradient(90deg, var(--primary-100) 25%, var(--primary-200) 50%, var(--primary-100) 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.carousel-slide.loaded .carousel-image {
+    animation: none;
+    background: none;
+}
+
+/* Mejoras de accesibilidad */
+.carousel-btn:focus,
+.carousel-indicator:focus {
+    outline: 3px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+.carousel-container:focus-within .carousel-btn {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track,
+    .carousel-slide,
+    .carousel-image,
+    .carousel-btn,
+    .progress-bar {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Efectos hover adicionales */
+.carousel-container:hover .carousel-btn {
+    opacity: 1;
+}
+
+.carousel-btn {
+    opacity: 0.8;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Print Styles */
 @media print {
     .music-player {
@@ -1198,6 +1519,10 @@ body.header-visible {
     }
     
     .primary-btn {
+        display: none;
+    }
+    
+    .image-carousel {
         display: none;
     }
 }
