@@ -286,6 +286,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // RSVP now handled by external system
         
+        // Initialize carousel
+        new ImageCarousel();
+        
         console.log('Invitation initialized successfully');
         
     } catch (error) {
@@ -569,7 +572,7 @@ class ImageCarousel {
     }
 
     updateProgress() {
-        if (!isPaused || !progressBar) return;
+        if (isPaused || !progressBar) return;
         
         const elapsed = Date.now() - this.startTime;
         const progress = Math.min((elapsed / carouselDuration) * 100, 100);
@@ -617,10 +620,7 @@ class ImageCarousel {
     }
 }
 
-// Inicializar carrusel
-document.addEventListener('DOMContentLoaded', function() {
-    new ImageCarousel();
-});
+// Inicializar carrusel - movido a la función principal de inicialización
 
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
