@@ -675,49 +675,184 @@ body::after {
     margin-right: auto;
 }
 
-/* Gallery Section */
+/* Gallery Section - Carrusel */
 .gallery-section {
     background: var(--bg-page);
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+/* Contenedor principal del carrusel */
+.image-carousel {
     margin-top: 64px;
+    position: relative;
 }
 
-.gallery-item {
-    aspect-ratio: 1;
-    border-radius: 8px;
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
     overflow: hidden;
-    box-shadow: 0px 8px 24px rgba(168, 197, 229, 0.15);
-    transition: transform 400ms ease-in-out;
+    border-radius: 16px;
+    box-shadow: 0px 20px 60px rgba(168, 197, 229, 0.2);
 }
 
-.gallery-item:hover {
-    transform: scale(1.03);
-}
-
-.gallery-placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--primary-100);
+/* Track de las imágenes */
+.carousel-track {
     display: flex;
-    flex-direction: column;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Slide individual */
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+}
+
+/* Overlay con texto */
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 48px 32px 32px;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.carousel-caption h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.carousel-caption p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Controles de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-700);
-    text-align: center;
-    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.gallery-placeholder span {
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn-prev {
+    left: 24px;
+}
+
+.carousel-btn-next {
+    right: 24px;
+}
+
+.carousel-btn svg {
+    width: 24px;
+    height: 24px;
+    color: #333;
+}
+
+/* Indicadores */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(168, 197, 229, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background: var(--primary-500);
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover {
+    background: var(--primary-300);
+}
+
+/* Barra de progreso */
+.carousel-progress {
+    width: 100%;
+    height: 3px;
+    background: rgba(168, 197, 229, 0.2);
+    margin-top: 24px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-400), var(--primary-600));
+    width: 0%;
+    transition: width 0.1s linear;
+    border-radius: 2px;
+}
+
+/* Estados hover */
+.carousel-container:hover .carousel-progress .progress-bar {
+    animation-play-state: paused;
+}
+
+/* Slide activo - efectos */
+.carousel-slide.active .carousel-image {
+    transform: scale(1.02);
+}
+
+.carousel-container:hover .carousel-image {
+    transform: scale(1.0);
+}
+
+/* Loading state para imágenes */
+.carousel-slide:not(.loaded) {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* Music Player */
@@ -998,9 +1133,53 @@ body::after {
         gap: 24px;
     }
     
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+    /* Responsive Carrusel */
+    .carousel-container {
+        margin: 0 16px;
+    }
+    
+    .carousel-image {
+        height: 300px;
+    }
+    
+    .carousel-caption {
+        padding: 32px 24px 24px;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 22px;
+    }
+    
+    .carousel-caption p {
+        font-size: 14px;
+    }
+    
+    .carousel-btn {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .carousel-btn-prev {
+        left: 16px;
+    }
+    
+    .carousel-btn-next {
+        right: 16px;
+    }
+    
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .carousel-indicators {
+        margin-top: 24px;
+        gap: 8px;
+    }
+    
+    .carousel-indicator {
+        width: 10px;
+        height: 10px;
     }
     
     .event-card {
@@ -1191,327 +1370,6 @@ body.header-visible {
     }
 }
 
-/* ========================================
-   CARRUSEL DE IMÁGENES - ESTILOS CSS
-   ======================================== */
-
-.image-carousel {
-    max-width: 1000px;
-    margin: 64px auto 0;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0px 20px 40px rgba(168, 197, 229, 0.25);
-    background: var(--bg-surface);
-}
-
-.carousel-container {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-    border-radius: 16px;
-}
-
-.carousel-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
-    will-change: transform;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-    opacity: 0;
-    transition: opacity 600ms ease-in-out;
-    display: flex;
-    flex-direction: column;
-}
-
-.carousel-slide.active {
-    opacity: 1;
-}
-
-.carousel-image {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-    display: block;
-    transition: transform 600ms ease-in-out;
-}
-
-.carousel-slide.active .carousel-image {
-    transform: scale(1.02);
-}
-
-.carousel-caption {
-    height: 30%;
-    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--primary-100) 100%);
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    border-top: 3px solid var(--primary-500);
-}
-
-.carousel-caption h3 {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-    font-family: 'Cormorant Garamond', serif;
-}
-
-.carousel-caption p {
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-/* Controles de navegación */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(44, 62, 80, 0.9);
-    border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-    backdrop-filter: blur(10px);
-}
-
-.carousel-btn:hover {
-    background: rgba(44, 62, 80, 1);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.carousel-btn:active {
-    transform: translateY(-50%) scale(0.95);
-}
-
-.carousel-btn-prev {
-    left: 20px;
-}
-
-.carousel-btn-next {
-    right: 20px;
-}
-
-.carousel-btn svg {
-    width: 20px;
-    height: 20px;
-    transition: transform 300ms ease;
-}
-
-.carousel-btn:hover svg {
-    transform: scale(1.2);
-}
-
-/* Indicadores */
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 24px;
-    background: var(--bg-surface);
-    position: relative;
-    z-index: 5;
-}
-
-.carousel-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: var(--border-subtle);
-    cursor: pointer;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.carousel-indicator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--primary-500);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.carousel-indicator.active::before {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.carousel-indicator:hover {
-    background: var(--primary-300);
-}
-
-.carousel-indicator.active {
-    background: var(--primary-500);
-}
-
-/* Barra de progreso */
-.carousel-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: rgba(168, 197, 229, 0.2);
-    z-index: 15;
-}
-
-.progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-500), var(--primary-700));
-    width: 0%;
-    transition: width 100ms linear;
-    border-radius: 2px 0 0 2px;
-}
-
-/* Responsive design para el carrusel */
-@media (max-width: 768px) {
-    .image-carousel {
-        margin: 32px auto 0;
-        border-radius: 12px;
-    }
-    
-    .carousel-container {
-        height: 400px;
-    }
-    
-    .carousel-caption {
-        height: 35%;
-        padding: 24px 20px;
-    }
-    
-    .carousel-caption h3 {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-    
-    .carousel-caption p {
-        font-size: 14px;
-    }
-    
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .carousel-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .carousel-btn-prev {
-        left: 12px;
-    }
-    
-    .carousel-btn-next {
-        right: 12px;
-    }
-    
-    .carousel-indicators {
-        padding: 16px;
-        gap: 8px;
-    }
-    
-    .carousel-indicator {
-        width: 10px;
-        height: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-container {
-        height: 350px;
-    }
-    
-    .carousel-caption {
-        padding: 20px 16px;
-    }
-    
-    .carousel-caption h3 {
-        font-size: 20px;
-    }
-    
-    .carousel-caption p {
-        font-size: 13px;
-    }
-}
-
-/* Estados de carga y error para imágenes */
-.carousel-slide:not(.loaded) .carousel-image {
-    background: linear-gradient(90deg, var(--primary-100) 25%, var(--primary-200) 50%, var(--primary-100) 75%);
-    background-size: 200% 100%;
-    animation: loading-shimmer 1.5s infinite;
-}
-
-@keyframes loading-shimmer {
-    0% {
-        background-position: -200% 0;
-    }
-    100% {
-        background-position: 200% 0;
-    }
-}
-
-.carousel-slide.loaded .carousel-image {
-    animation: none;
-    background: none;
-}
-
-/* Mejoras de accesibilidad */
-.carousel-btn:focus,
-.carousel-indicator:focus {
-    outline: 3px solid var(--accent-gold);
-    outline-offset: 2px;
-}
-
-.carousel-container:focus-within .carousel-btn {
-    opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .carousel-track,
-    .carousel-slide,
-    .carousel-image,
-    .carousel-btn,
-    .progress-bar {
-        transition: none !important;
-        animation: none !important;
-    }
-}
-
-/* Efectos hover adicionales */
-.carousel-container:hover .carousel-btn {
-    opacity: 1;
-}
-
-.carousel-btn {
-    opacity: 0.8;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 /* Print Styles */
 @media print {
     .music-player {
@@ -1519,10 +1377,6 @@ body.header-visible {
     }
     
     .primary-btn {
-        display: none;
-    }
-    
-    .image-carousel {
         display: none;
     }
 }
