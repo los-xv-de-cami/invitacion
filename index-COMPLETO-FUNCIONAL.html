@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila - Mis Quince Años</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS COMPLETO EMBEBIDO -->
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-blue: #A8C5E5;
+            --bg-page: #FDFDFD;
+            --text-primary: #212932;
+            --text-secondary: #6C757D;
+            --accent-pink: #F8BBD9;
+            --gradient-hero: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(168, 197, 229, 0.1) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 64px;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Fixed Header */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .fixed-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .header-link {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header-link:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-photo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            background-image: url('photos/camila-1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(33, 41, 50, 0.3) 0%, rgba(212, 175, 55, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle-2 { top: 30%; right: 15%; animation-delay: 1s; }
+        .particle-3 { top: 60%; left: 5%; animation-delay: 2s; }
+        .particle-4 { top: 70%; right: 10%; animation-delay: 3s; }
+        .particle-5 { top: 15%; left: 50%; animation-delay: 0.5s; }
+        .particle-6 { top: 80%; right: 30%; animation-delay: 1.5s; }
+        .particle-7 { top: 45%; left: 80%; animation-delay: 2.5s; }
+        .particle-8 { top: 25%; right: 50%; animation-delay: 3.5s; }
+        .particle-9 { top: 55%; left: 70%; animation-delay: 4s; }
+        .particle-10 { top: 75%; right: 20%; animation-delay: 4.5s; }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 80px;
+            font-weight: 600;
+            margin-bottom: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-container {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .curtain {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.8) 0%, rgba(168, 197, 229, 0.8) 100%);
+            z-index: 4;
+            transition: transform 2s ease-in-out;
+        }
+
+        .curtain-left {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        .curtain-right {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        .curtain.open {
+            transform: translateX(-100%);
+        }
+
+        .curtain.right.open {
+            transform: translateX(100%);
+        }
+
+        /* Sección de gracias */
+        .thanks-section {
+            padding: 120px 0;
+            background: var(--gradient-hero);
+        }
+
+        .event-grid {
+            display: grid;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .event-card {
+            background: white;
+            padding: 48px 32px;
+            border-radius: 16px;
+            box-shadow: 0px 8px 32px rgba(168, 197, 229, 0.15);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 16px 48px rgba(168, 197, 229, 0.25);
+        }
+
+        .event-icon {
+            color: var(--primary-gold);
+            margin-bottom: 24px;
+        }
+
+        .event-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .thanks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .thanks-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+        }
+
+        .thanks-icon {
+            font-size: 20px;
+        }
+
+        /* Sección de detalles del evento */
+        .details-section {
+            padding: 120px 0;
+            background: var(--bg-page);
+        }
+
+        .agenda-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+        }
+
+        .agenda-time {
+            font-weight: 600;
+            color: var(--primary-gold);
+            min-width: 80px;
+        }
+
+        .agenda-activity {
+            flex: 1;
+            text-align: left;
+            margin-left: 16px;
+        }
+
+        .map-link {
+            margin-top: 16px;
+        }
+
+        .map-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .map-link a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* CARRUSEL STYLES - ESTOS SON CRÍTICOS */
+        .image-carousel {
+            margin-top: 64px;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0px 20px 60px rgba(168, 197, 229, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 48px 32px 32px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-caption h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .carousel-caption p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn-prev {
+            left: 24px;
+        }
+
+        .carousel-btn-next {
+            right: 24px;
+        }
+
+        .carousel-btn svg {
+            width: 24px;
+            height: 24px;
+            color: #333;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #D0D7DF;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: #212932;
+            transform: scale(1.2);
+        }
+
+        .carousel-progress {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            margin-top: 32px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #212932;
+            width: 0%;
+            transition: width 0.05s linear;
+        }
+
+        /* Sección de fotos sociales */
+        .social-photos-section {
+            padding: 120px 0;
+            background: var(--gradient-hero);
+        }
+
+        .social-card {
+            position: relative;
+        }
+
+        .social-hashtag {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .hashtag {
+            background: var(--primary-gold);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .google-photos-link {
+            margin-top: 24px;
+        }
+
+        .google-photos-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .google-photos-link a:hover {
+            background: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Sección RSVP */
+        .rsvp-section {
+            padding: 120px 0;
+            background: var(--bg-page);
+        }
+
+        .rsvp-button-container {
+            margin: 48px 0;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary-gold);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 24px rgba(212, 175, 55, 0.3);
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0px 12px 32px rgba(168, 197, 229, 0.4);
+        }
+
+        .rsvp-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 48px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 16px rgba(168, 197, 229, 0.1);
+        }
+
+        .info-item svg {
+            color: var(--primary-gold);
+            flex-shrink: 0;
+        }
+
+        .info-item span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .music-toggle {
+            background: var(--primary-gold);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            background: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .music-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .music-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-name {
+                font-size: 48px;
+            }
+
+            .countdown-number {
+                font-size: 32px;
+            }
+
+            .countdown-container {
+                gap: 16px;
+            }
+
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 48px;
+            }
+
+            .event-card {
+                padding: 32px 24px;
+            }
+
+            .carousel-container {
+                max-width: 100%;
+                margin: 0 10px;
+            }
+
+            .carousel-image {
+                height: 300px;
+            }
+
+            .carousel-caption {
+                padding: 24px 20px 16px;
+            }
+
+            .carousel-caption h3 {
+                font-size: 24px;
+            }
+
+            .carousel-caption p {
+                font-size: 14px;
+            }
+
+            .carousel-btn {
+                width: 44px;
+                height: 44px;
+            }
+
+            .carousel-btn-prev {
+                left: 12px;
+            }
+
+            .carousel-btn-next {
+                right: 12px;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .music-player {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                justify-content: space-between;
+            }
+
+            .music-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="fixed-header" id="fixedHeader">
+        <div class="fixed-header-content">
+            <div class="logo-container">
+                <img src="logo-camila.png" alt="Camila Logo" class="header-logo">
+            </div>
+            <nav class="header-nav">
+                <a href="#inicio" class="header-link">Inicio</a>
+                <a href="#detalles" class="header-link">Agenda</a>
+                <a href="#galeria" class="header-link">Galería</a>
+                <a href="#rsvp" class="header-link">Asistencia</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <!-- Background Image of Camila -->
+        <div class="hero-photo-container">
+            <div class="hero-photo" id="heroPhoto"></div>
+            <!-- Curtains Animation -->
+            <div class="curtain curtain-left"></div>
+            <div class="curtain curtain-right"></div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <div class="particles-container">
+            <div class="particle particle-1">🌸</div>
+            <div class="particle particle-2">🦋</div>
+            <div class="particle particle-3">🌺</div>
+            <div class="particle particle-4">🦋</div>
+            <div class="particle particle-5">🌸</div>
+            <div class="particle particle-6">🌺</div>
+            <div class="particle particle-7">🦋</div>
+            <div class="particle particle-8">🌸</div>
+            <div class="particle particle-9">🦋</div>
+            <div class="particle particle-10">🌺</div>
+        </div>
+        
+        <!-- Background Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h2 class="hero-subtitle" id="heroSubtitle">Mis Quince Años</h2>
+            <h1 class="hero-name" id="heroName">Camila</h1>
+            <div class="countdown-container" id="countdownContainer">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">DÍAS</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">HORAS</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">MINUTOS</span>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Agradecimientos Section -->
+    <section class="thanks-section" id="agradecimientos">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Agradecimientos</h2>
+                <div class="event-grid">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                                <path d="M12 21.23V12"/>
+                                <path d="M12 12c-3.87-3.87-4.24-6.54-4.24-9.54"/>
+                                <path d="M12 12c3.87-3.87 4.24-6.54 4.24-9.54"/>
+                            </svg>
+                        </div>
+                        <h3>Agradezco a:</h3>
+                        <div class="thanks-list">
+                            <div class="thanks-item">
+                                <span class="thanks-icon">👨‍👩‍👧‍👦</span>
+                                <span>A mis padres</span>
+                            </div>
+                            <div class="thanks-item">
+                                <span class="thanks-icon">👴👵</span>
+                                <span>A mis abuelos</span>
+                            </div>
+                            <div class="thanks-item">
+                                <span class="thanks-icon">💕</span>
+                                <span>A mi familia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section class="event-details" id="detalles">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Agenda del Día</h2>
+                <div class="event-grid">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"/>
+                            </svg>
+                        </div>
+                        <h3>Programa del Día</h3>
+
+                        <div class="agenda-item">
+                            <span class="agenda-time">6:00 p.m.</span>
+                            <span class="agenda-activity">Recepción en salón</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">6:30 p.m.</span>
+                            <span class="agenda-activity">Inicio del evento</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">7:00 p.m.</span>
+                            <span class="agenda-activity">Vals</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">7:30 p.m.</span>
+                            <span class="agenda-activity">Performance</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">8:30 p.m.</span>
+                            <span class="agenda-activity">¡Que todo se descontrole!</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">12:00 a.m.</span>
+                            <span class="agenda-activity">¿Unos Chilaquilitos?</span>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-time">1:00 a.m.</span>
+                            <span class="agenda-activity">¿Que se acabó la fiesta?</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16v12H5.17L4 17.17V4zm0 0a2 2 0 012-2h12a2 2 0 012 2v3a2 2 0 01-2 2h-5.5l-1.5 1.5L15.5 17H6"/>
+                                <path d="M11 4h2"/>
+                            </svg>
+                        </div>
+                        <h3>Misa de Acción de Gracias</h3>
+                        <p>Parroquia del Nuestra Señora del Sagrado Corazón</p>
+                        <p>📍 Av. 8 217, Col. Ignacio Zaragoza</p>
+                        <p>🏘️ Venustiano Carranza, C.P. 15000, CDMX</p>
+                        <p>🕐 5:00 p.m.</p>
+                        <div class="map-link">
+                            <a href="https://maps.google.com/maps?q=Av.+8+217,+Col.+Ignacio+Zaragoza,+Venustiano+Carranza,+C.P.+15000,+CDMX&t=&z=15&ie=UTF8&iwloc=&output=embed" target="_blank" rel="noopener noreferrer">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Ver en Google Maps
+                            </a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <h3>Lugar de Recepción</h3>
+                        <p>Salón de Luz</p>
+                        <p>📍 Av. 8 217, Col. Ignacio Zaragoza</p>
+                        <p>🏘️ Venustiano Carranza, C.P. 15000, CDMX</p>
+                        <p>Te espero con todo el ánimo</p>
+                        <div class="map-link">
+                            <a href="https://maps.google.com/maps?q=Av.+8+217,+Col.+Ignacio+Zaragoza,+Venustiano+Carranza,+C.P.+15000,+CDMX&t=&z=15&ie=UTF8&iwloc=&output=embed" target="_blank" rel="noopener noreferrer">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                Ver en Google Maps
+                            </a>
+                        </div>
+                    </div>
+                    <div class="event-card" id="dresscode">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </div>
+                        <h3>Dress Code</h3>
+                        <p>Relajado pero limpio</p>
+                        <p>Vístete elegante y cómodo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="galeria">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Momentos Especiales</h2>
+                
+                <!-- Carrusel de Imágenes -->
+                <div class="image-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Las imágenes se cargarán dinámicamente -->
+                            <div class="carousel-slide active">
+                                <img src="photos/camila-1.jpg" alt="Foto de Camila" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mi XV Años</h3>
+                                    <p>Preparándome para este día especial</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-2.jpg" alt="Sesión de fotos" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Sesión de Fotos</h3>
+                                    <p>Capturando los mejores momentos</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-3.jpg" alt="Con mi familia" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mi Familia</h3>
+                                    <p>El apoyo más importante</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-4.jpg" alt="Con mis amigas" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mis Amigas</h3>
+                                    <p>La celebración perfecta</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-5.jpg" alt="Detalles especiales" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Detalles Únicos</h3>
+                                    <p>Cada momento cuenta</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-6.jpg" alt="Con mis amigas" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Momentos Divertidos</h3>
+                                    <p>Risas y aventuras</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-7.jpg" alt="Preparación especial" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>La Preparación</h3>
+                                    <p>Detrás de escenas</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-8.jpg" alt="Con mi vestido" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Mi Vestido</h3>
+                                    <p>El vestido de mis sueños</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-9.jpg" alt="Mis regalos" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>Momentos Especiales</h3>
+                                    <p>Recuerdos únicos</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="photos/camila-10.jpg" alt="Celebrando" class="carousel-image">
+                                <div class="carousel-caption">
+                                    <h3>¡Ya Llegó el Día!</h3>
+                                    <p>La celebración de mis sueños</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Controles de navegación -->
+                        <button class="carousel-btn carousel-btn-prev" id="prevBtn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn carousel-btn-next" id="nextBtn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Indicadores de slides -->
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <!-- Se generarán dinámicamente -->
+                    </div>
+                    
+                    <!-- Contador de progreso -->
+                    <div class="carousel-progress">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Photos Section -->
+    <section class="social-photos-section" id="fotos">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">#LosXVdeCami</h2>
+                <div class="event-grid">
+                    <div class="event-card social-card">
+                        <div class="event-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                        </div>
+                        <h3>¡Captura los mejores momentos!</h3>
+                        <p>No te olvides de tomar muchas fotos y videos de la celebración</p>
+                        <div class="social-hashtag">
+                            <span class="hashtag">#LosXVdeCami</span>
+                            <span class="hashtag">#CamilaQuinceañera</span>
+                            <span class="hashtag">#MisQuinceAños</span>
+                        </div>
+                        <div class="google-photos-link">
+                            <a href="https://photos.google.com" target="_blank" rel="noopener noreferrer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C8.24 2 5.23 4.21 4.47 7.47c.12.55.53 1.03 1.09 1.09C6.87 9.1 9.23 10 12 10s5.13-.9 6.44-1.44c.56-.06.97-.54 1.09-1.09.76-3.26-1.77-5.47-4.53-5.47C14.69 3 12 2 12 2s0 0 0 0z"/>
+                                    <circle cx="12" cy="12" r="3.5"/>
+                                </svg>
+                                Ver album en Google Fotos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="rsvp-section" id="rsvp">
+        <div class="container">
+            <div class="section-content">
+                <h2 class="section-title">Confirma tu Asistencia</h2>
+                <p class="section-subtitle">Para confirmar tu asistencia y recibir tu boleto electrónico, por favor accede al sistema de confirmación</p>
+                <div class="rsvp-button-container">
+                    <a href="sistema-boletos/index.html" class="primary-btn rsvp-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Confirmar Asistencia y Recibir Boleto
+                    </a>
+                </div>
+                <div class="rsvp-info">
+                    <div class="info-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Confirma tu asistencia en línea</span>
+                    </div>
+                    <div class="info-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span>Recibe tu boleto electrónico personalizado</span>
+                    </div>
+                    <div class="info-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        <span>Reserva tu lugar en las mesas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-toggle" id="musicToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+            </svg>
+        </button>
+        <div class="music-info" id="musicInfo">
+            <span class="music-title">Gustavo Cerati</span>
+            <span class="music-subtitle">Música ambiente</span>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="pistaxvcami.mp3" type="audio/mpeg">
+        <!-- Fallback: silence -->
+    </audio>
+
+    <!-- JAVASCRIPT COMPLETO EMBEBIDO CON CARRUSEL CORREGIDO -->
+    <script>
+        // Elements
+        const fixedHeader = document.getElementById('fixedHeader');
+        const headerLinks = document.querySelectorAll('.header-link');
+        const heroPhoto = document.getElementById('heroPhoto');
+        const heroSubtitle = document.getElementById('heroSubtitle');
+        const heroName = document.getElementById('heroName');
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        // Carousel Elements
+        const carouselTrack = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('carouselIndicators');
+        const progressBar = document.getElementById('progressBar');
+
+        // Carousel State
+        let currentSlide = 0;
+        let totalSlides = 0;
+        let carouselDuration = 4000; // 4 segundos
+        let isPaused = false;
+
+        class ImageCarousel {
+            constructor() {
+                this.startTime = Date.now();
+                this.carouselInterval = null;
+                this.init();
+            }
+
+            init() {
+                if (!carouselTrack) return;
+                
+                this.setupCarousel();
+                this.createIndicators();
+                this.bindEvents();
+                this.startAutoplay();
+            }
+
+            setupCarousel() {
+                this.slides = document.querySelectorAll('.carousel-slide');
+                totalSlides = this.slides.length;
+                
+                // Precargar imágenes
+                this.preloadImages();
+            }
+
+            preloadImages() {
+                this.slides.forEach(slide => {
+                    const img = slide.querySelector('.carousel-image');
+                    if (img && img.src) {
+                        const image = new Image();
+                        image.onload = () => slide.classList.add('loaded');
+                        image.src = img.src;
+                    }
+                });
+            }
+
+            createIndicators() {
+                if (!indicatorsContainer) return;
+                
+                indicatorsContainer.innerHTML = '';
+                
+                for (let i = 0; i < totalSlides; i++) {
+                    const indicator = document.createElement('button');
+                    indicator.className = 'carousel-indicator';
+                    indicator.setAttribute('data-slide', i);
+                    if (i === 0) indicator.classList.add('active');
+                    
+                    indicator.addEventListener('click', () => this.goToSlide(i));
+                    indicatorsContainer.appendChild(indicator);
+                }
+            }
+
+            bindEvents() {
+                // Botones de navegación
+                if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
+                if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
+
+                // Pausar al pasar el mouse
+                const carouselContainer = document.querySelector('.carousel-container');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', () => this.pause());
+                    carouselContainer.addEventListener('mouseleave', () => this.resume());
+                }
+
+                // Touch/swipe support para móviles
+                this.addSwipeSupport();
+            }
+
+            addSwipeSupport() {
+                const carouselContainer = document.querySelector('.carousel-container');
+                if (!carouselContainer) return;
+
+                let startX = 0;
+                let startY = 0;
+                let isDragging = false;
+
+                carouselContainer.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    isDragging = true;
+                });
+
+                carouselContainer.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                });
+
+                carouselContainer.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    
+                    const endX = e.changedTouches[0].clientX;
+                    const endY = e.changedTouches[0].clientY;
+                    const deltaX = endX - startX;
+                    const deltaY = endY - startY;
+
+                    // Solo procesar si el movimiento horizontal es mayor que vertical
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                        if (deltaX > 0) {
+                            this.prevSlide();
+                        } else {
+                            this.nextSlide();
+                        }
+                    }
+                    
+                    isDragging = false;
+                });
+            }
+
+            goToSlide(slideIndex) {
+                if (slideIndex < 0 || slideIndex >= totalSlides) return;
+                
+                currentSlide = slideIndex;
+                this.updateCarousel();
+                this.resetProgress();
+            }
+
+            nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                this.updateCarousel();
+                this.resetProgress();
+            }
+
+            prevSlide() {
+                currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+                this.updateCarousel();
+                this.resetProgress();
+            }
+
+            updateCarousel() {
+                // Actualizar posición del track
+                const translateX = -currentSlide * 100;
+                carouselTrack.style.transform = `translateX(${translateX}%)`;
+
+                // Actualizar indicadores
+                const indicators = document.querySelectorAll('.carousel-indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+
+                // Animar captions
+                this.slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            resetProgress() {
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                }
+                // Reset start time for proper timing calculation
+                this.startTime = Date.now();
+            }
+
+            updateProgress() {
+                if (isPaused || !progressBar) return;
+                
+                const elapsed = Date.now() - this.startTime;
+                const progress = Math.min((elapsed / carouselDuration) * 100, 100);
+                
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    this.nextSlide();
+                    this.resetProgress();
+                }
+            }
+
+            startAutoplay() {
+                this.stopAutoplay();
+                isPaused = false;
+                this.resetProgress();
+                
+                // Use requestAnimationFrame for smooth updates
+                const animate = () => {
+                    if (!isPaused) {
+                        this.updateProgress();
+                    }
+                    requestAnimationFrame(animate);
+                };
+                requestAnimationFrame(animate);
+            }
+
+            stopAutoplay() {
+                isPaused = true;
+            }
+
+            pause() {
+                isPaused = true;
+                this.stopAutoplay();
+            }
+
+            resume() {
+                isPaused = false;
+                this.startAutoplay();
+            }
+
+            destroy() {
+                this.stopAutoplay();
+            }
+        }
+
+        // Hero Image Slideshow
+        const heroImages = [
+            'photos/camila-1.jpg',
+            'photos/camila-2.jpg',
+            'photos/camila-3.jpg'
+        ];
+
+        let currentHeroImage = 0;
+
+        function updateHeroImage() {
+            if (heroPhoto && heroImages.length > 0) {
+                heroPhoto.style.backgroundImage = `url('${heroImages[currentHeroImage]}')`;
+                currentHeroImage = (currentHeroImage + 1) % heroImages.length;
+            }
+        }
+
+        // Countdown Function
+        function updateCountdown() {
+            const eventDate = new Date('2024-12-28T19:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                if (daysElement) daysElement.textContent = String(days).padStart(2, '0');
+                if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
+                if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
+            } else {
+                if (daysElement) daysElement.textContent = '00';
+                if (hoursElement) hoursElement.textContent = '00';
+                if (minutesElement) minutesElement.textContent = '00';
+            }
+        }
+
+        // Header Visibility
+        function updateHeaderVisibility() {
+            const scrolled = window.scrollY;
+            if (scrolled > 100) {
+                fixedHeader.style.background = 'rgba(255, 255, 255, 0.98)';
+                fixedHeader.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                fixedHeader.style.background = 'rgba(255, 255, 255, 0.95)';
+                fixedHeader.style.boxShadow = 'none';
+            }
+        }
+
+        // Smooth scrolling
+        function scrollToSection(targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const headerHeight = fixedHeader.offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Event listeners
+        window.addEventListener('scroll', updateHeaderVisibility);
+        
+        // Navigation links click handlers
+        headerLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+                
+                // Update active link
+                headerLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Music player functionality
+        if (musicToggle && backgroundMusic) {
+            musicToggle.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    musicToggle.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
+                        </svg>
+                    `;
+                } else {
+                    backgroundMusic.pause();
+                    musicToggle.innerHTML = `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18V5l12-2v13"/>
+                            <line x1="23" y1="7" x2="23" y2="17"/>
+                            <line x1="17" y1="7" x2="17" y2="17"/>
+                        </svg>
+                    `;
+                }
+            });
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open curtains
+            setTimeout(() => {
+                document.querySelector('.curtain-left')?.classList.add('open');
+                document.querySelector('.curtain-right')?.classList.add('open');
+            }, 1000);
+
+            // Start functions
+            updateCountdown();
+            updateHeroImage();
+            
+            // Update countdown every minute
+            setInterval(updateCountdown, 60000);
+            
+            // Update hero image every 5 seconds
+            setInterval(updateHeroImage, 5000);
+
+            // Initialize carousel
+            new ImageCarousel();
+            
+            // Initial header check
+            updateHeaderVisibility();
+        });
+    </script>
+</body>
+</html>
