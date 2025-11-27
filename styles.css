@@ -12,6 +12,11 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background-color: #FDFDFD;
+    background-image: url('corazones-fondo.svg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 800px 800px;
     color: #212932;
     line-height: 1.7;
     overflow-x: hidden;
@@ -1105,6 +1110,11 @@ body::after {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Optimización del fondo de corazones para móviles */
+    body {
+        background-attachment: scroll; /* Mejor rendimiento en móviles */
+        background-size: 600px 600px; /* Tamaño más pequeño para móviles */
+    }
     .hero-name {
         font-size: 55px;
     }
@@ -1260,6 +1270,11 @@ body::after {
         transition-duration: 0.01ms !important;
     }
     
+    /* Optimizar fondo de corazones para accesibilidad */
+    body {
+        background-attachment: scroll;
+    }
+    
     .hero-background {
         animation: none;
     }
@@ -1372,6 +1387,11 @@ body.header-visible {
 
 /* Print Styles */
 @media print {
+    /* Eliminar fondo de corazones para impresión */
+    body {
+        background-image: none;
+    }
+    
     .music-player {
         display: none;
     }
