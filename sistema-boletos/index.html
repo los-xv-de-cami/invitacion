@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los XV Años de Camila</title>
+    <title>Invitación - Los XV Años de Camila</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,57 +19,108 @@
 
         <!-- Main Event Title -->
         <h1 class="event-title">Los XV Años de Camila</h1>
-        <p class="event-subtitle">Invitación Digital</p>
 
-        <!-- Instructions Card -->
-        <div class="instruction-card">
-            <div class="instruction-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 6v6l4 2"/>
-                </svg>
+        <!-- Main Ticket Card -->
+        <div class="ticket-card">
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <div class="qr-container">
+                    <div id="qrcode"></div>
+                </div>
+                <p class="qr-instruction">Este código QR es tu entrada al evento</p>
             </div>
-            <h2>Bienvenido a la Celebración</h2>
-            <p>Para acceder a tu invitación personalizada, utiliza el enlace que te enviamos por WhatsApp, email o mensaje.</p>
-            <div class="sample-link">
-                <span class="sample-text">Ejemplo: </span>
-                <code>misitio.com/invitacion?id=MARIA_GARCIA</code>
+
+            <!-- Event Details Section -->
+            <div class="event-details-section">
+                <div class="event-info-grid">
+                    <div class="event-info-item">
+                        <div class="event-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                        </div>
+                        <div class="event-text">
+                            <span class="event-label">Fecha</span>
+                            <span class="event-value">Sábado 14 de Febrero, 2026</span>
+                        </div>
+                    </div>
+                    <div class="event-info-item">
+                        <div class="event-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <div class="event-text">
+                            <span class="event-label">Hora</span>
+                            <span class="event-value">7:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="event-info-item">
+                        <div class="event-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="event-text">
+                            <span class="event-label">Lugar</span>
+                            <span class="event-value">Salón D'Luz</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative Divider -->
+            <div class="decorative-divider"></div>
+
+            <!-- Guest Information Section -->
+            <div class="guest-section">
+                <h2 class="guest-name" id="guestName">Cargando...</h2>
+                <div class="guest-details-card">
+                    <div class="guest-detail">
+                        <div class="detail-label">MESA</div>
+                        <div class="detail-value" id="mesaAsignada">--</div>
+                    </div>
+                    <div class="guest-detail">
+                        <div class="detail-label">ACOMPAÑANTES</div>
+                        <div class="detail-value" id="acompanantes">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="instructions-section">
+                <div class="instruction-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    <span>Presenta este código QR en la entrada del evento</span>
+                </div>
+                <div class="instruction-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                    </svg>
+                    <span>No es necesario imprimir esta invitación</span>
+                </div>
             </div>
         </div>
 
-        <!-- Event Info Preview -->
-        <div class="event-preview">
-            <h3>Detalles del Evento</h3>
-            <div class="event-details-grid">
-                <div class="detail-item">
-                    <div class="detail-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="16" y1="2" x2="16" y2="6"/>
-                            <line x1="8" y1="2" x2="8" y2="6"/>
-                            <line x1="3" y1="10" x2="21" y2="10"/>
-                        </svg>
-                    </div>
-                    <span>Sábado 15 de Marzo, 2025</span>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12,6 12,12 16,14"/>
-                        </svg>
-                    </div>
-                    <span>7:00 PM</span>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                    </div>
-                    <span>Salón Elegance</span>
-                </div>
+        <!-- Error Message (Hidden by default) -->
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <div class="error-content">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                </svg>
+                <h3>Invitación no encontrada</h3>
+                <p>No pudimos encontrar tu invitación. Verifica que el enlace sea correcto o contacta a los organizadores.</p>
             </div>
         </div>
 
@@ -79,5 +130,7 @@
             <div class="footer-decoration"></div>
         </footer>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
