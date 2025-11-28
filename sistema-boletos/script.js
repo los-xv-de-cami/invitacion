@@ -53,8 +53,8 @@ function generateQRCode(invitadoId, guestName) {
   // Limpiar contenedor
   qrContainer.innerHTML = '';
   
-  // Crear datos del QR - SIMPLIFICADOS para evitar overflow
-  const qrText = `${invitadoId}|${guestName}`;
+  // Crear datos del QR - SIMPLIFICADOS con info del evento 2026
+  const qrText = `XV Cami|14-Feb-2026-Sab|${invitadoId}|${guestName}`;
   
   // Generar QR
   new QRCode(qrContainer, {
