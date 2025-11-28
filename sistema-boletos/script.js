@@ -53,16 +53,8 @@ function generateQRCode(invitadoId, guestName) {
   // Limpiar contenedor
   qrContainer.innerHTML = '';
   
-  // Crear datos del QR
-  const qrData = {
-    id: invitadoId,
-    nombre: guestName,
-    evento: CONFIG.EVENT_NAME,
-    fecha: '2025-03-15',
-    timestamp: new Date().toISOString()
-  };
-  
-  const qrText = JSON.stringify(qrData);
+  // Crear datos del QR - SIMPLIFICADOS para evitar overflow
+  const qrText = `${invitadoId}|${guestName}`;
   
   // Generar QR
   new QRCode(qrContainer, {
