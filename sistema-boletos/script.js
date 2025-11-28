@@ -1,6 +1,9 @@
+// COPIA TODO ESTE CONTENIDO AL ARCHIVO script.js EN TU GITHUB
+// Reemplaza completamente el archivo script.js en tu repositorio
+
 // Configuration
 const CONFIG = {
-  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzyDWLl-dSTdL6S68_AH28xqB8KYmKOnWdsCVNPMsbycnP9MSa5AqJ4u8B8ty_nrkkU/exec', // Reemplazar con tu URL
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzyDWLl-dSTdL6S68_AH28xqB8KYmKOnWdsCVNPMsbycnP9MSa5AqJ4u8B8ty_nrkkU/exec',
   EVENT_NAME: 'Los XV Años de Camila'
 };
 
@@ -27,13 +30,13 @@ function showError(message) {
   }
 }
 
-function formatAcompanantes(acompanantes) {
-  if (!acompanantes || accompanantes.trim() === '') {
+function formatAcompanantes(nombresAcompanantes) {
+  if (!nombresAcompanantes || nombresAcompanantes.trim() === '') {
     return 'Solo';
   }
   
   // Contar nombres separados por comas
-  const nombres = accompanantes.split(',').map(n => n.trim()).filter(n => n.length > 0);
+  const nombres = nombresAcompanantes.split(',').map(n => n.trim()).filter(n => n.length > 0);
   const total = nombres.length;
   
   if (total === 1) {
