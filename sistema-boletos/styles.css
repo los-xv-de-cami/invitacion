@@ -1,9 +1,9 @@
 /* CSS Variables for Color System */
 :root {
-  /* Primary Palette (Azul Pastel) */
-  --primary-100: #F0F4F8;
-  --primary-500: #B4CDE6;
-  --primary-900: #4A6C8C;
+  /* Primary Palette (Azul Pastel - INTENSIFICADO) */
+  --primary-100: #E6F2FA;
+  --primary-500: #8FB8E6;
+  --primary-900: #2563A1;
 
   /* Accent Colors (Negro y Dorado) */
   --accent-gold-gradient: linear-gradient(145deg, #EADCA6 0%, #C7A65D 100%);
@@ -28,7 +28,7 @@
   --radius-qr: 8px;
 
   /* Shadows */
-  --shadow-card: 0 8px 32px rgba(74, 108, 140, 0.15);
+  --shadow-card: 0 8px 32px rgba(37, 91, 161, 0.15);
 }
 
 /* Reset and Base Styles */
@@ -121,7 +121,7 @@ h3 {
   border-radius: var(--radius-card);
   padding: var(--space-xl);
   box-shadow: var(--shadow-card);
-  border: 1px solid rgba(74, 108, 140, 0.1);
+  border: 1px solid rgba(37, 91, 161, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -149,7 +149,7 @@ h3 {
   background: var(--neutral-100);
   padding: var(--space-md);
   border-radius: var(--radius-qr);
-  box-shadow: 0 4px 16px rgba(74, 108, 140, 0.1);
+  box-shadow: 0 4px 16px rgba(37, 91, 161, 0.1);
   margin-bottom: var(--space-md);
 }
 
@@ -288,7 +288,7 @@ h3 {
 
 /* Instructions Section */
 .instructions-section {
-  border-top: 1px solid rgba(74, 108, 140, 0.1);
+  border-top: 1px solid rgba(37, 91, 161, 0.1);
   padding-top: var(--space-lg);
 }
 
