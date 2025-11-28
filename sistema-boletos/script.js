@@ -75,15 +75,13 @@ function generateQRCode(invitadoId, guestName) {
 // Data Functions
 async function fetchGuestData(invitadoId) {
   try {
-    // Usar FormData en lugar de JSON para mejor compatibilidad con Apps Script
-    const formData = new FormData();
-    formData.append('id', invitadoId);
+    // CAMBIO: Usar GET en lugar de POST para evitar problemas de CORS
+    const url = `${CONFIG.APPS_SCRIPT_URL}?id=${encodeURIComponent(invitadoId)}&t=${Date.now()}`;
     
-    const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: formData,
+    const response = await fetch(url, {
+      method: 'GET',
       headers: {
-        // Importante: No setear Content-Type, que el navegador lo maneje automáticamente
+        'Accept': 'application/json'
       }
     });
     
