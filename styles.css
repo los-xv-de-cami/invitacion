@@ -1272,6 +1272,7 @@ body::after {
 .thanks-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 16px;
     margin: 16px 0;
     padding: 12px 16px;
@@ -1289,6 +1290,30 @@ body::after {
 .thanks-icon {
     font-size: 20px;
     min-width: 24px;
+}
+
+.pulsing-heart {
+    animation: pulse-heart 1.5s ease-in-out infinite;
+}
+
+.thanks-text {
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    font-size: 16px;
+}
+
+@keyframes pulse-heart {
+    0%, 100% {
+        transform: scale(1);
+        stroke: #DC2626;
+        fill: none;
+    }
+    50% {
+        transform: scale(1.1);
+        stroke: #EF4444;
+        fill: #FEE2E2;
+    }
 }
 
 /* Estilos para Social Photos */
@@ -1519,6 +1544,21 @@ body::after {
         background-size: cover;
         background-position: center center;
     }
+    
+    /* Ajustes para agradecimientos en móviles */
+    .thanks-item {
+        gap: 12px;
+        padding: 10px 12px;
+    }
+    
+    .pulsing-heart {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .thanks-text {
+        font-size: 14px;
+    }
 }
 }
 
@@ -1741,6 +1781,21 @@ body.header-visible {
     
     .countdown-label {
         font-size: 12px;
+    }
+    
+    /* Ajustes adicionales para pantallas muy pequeñas */
+    .thanks-item {
+        gap: 8px;
+        padding: 8px 10px;
+    }
+    
+    .pulsing-heart {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .thanks-text {
+        font-size: 13px;
     }
 }
 
