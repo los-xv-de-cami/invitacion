@@ -3,7 +3,7 @@
 
 // Configuration
 const CONFIG = {
-  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzyDWLl-dSTdL6S68_AH28xqB8KYmKOnWdsCVNPMsbycnP9MSa5AqJ4u8B8ty_nrkkU/exec',
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwUi-QDj9eOjqtvmdd7Iar6A0KaIggRHw8sXiyBIWuhTNqnhBjkbkM3AfSGQBLGshdz/exec',
   EVENT_NAME: 'Los XV Años de Camila'
 };
 
