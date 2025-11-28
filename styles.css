@@ -58,7 +58,7 @@ h1, h2, h3 {
     font-size: 48px;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 32px;
     color: #212932;
 }
 
@@ -212,7 +212,7 @@ body::after {
 }
 
 .section-content {
-    padding: 96px 0;
+    padding: 40px 0;
 }
 
 /* Hero Section */
@@ -491,13 +491,13 @@ body::after {
 .event-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    margin-top: 64px;
+    gap: 20px;
+    margin-top: 32px;
 }
 
 .event-card {
     background: var(--bg-surface);
-    padding: 64px 32px;
+    padding: 40px 24px;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0px 8px 24px rgba(168, 197, 229, 0.15);
@@ -689,7 +689,7 @@ body::after {
 
 .rsvp-button-container {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
 
 .rsvp-button {
@@ -744,7 +744,7 @@ body::after {
     text-align: center;
     font-size: 18px;
     color: var(--text-secondary);
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -886,7 +886,7 @@ body::after {
 /* Responsive para la sección de sobres */
 @media (max-width: 768px) {
     .lluvia-sobres-section {
-        padding: 64px 0;
+        padding: 40px 0;
     }
     
     .sobres-text {
@@ -933,7 +933,7 @@ body::after {
 
 /* Contenedor principal del carrusel */
 .image-carousel {
-    margin-top: 64px;
+    margin-top: 32px;
     position: relative;
 }
 
@@ -1262,7 +1262,7 @@ body::after {
 /* Estilos para Agradecimientos */
 .thanks-section {
     background: linear-gradient(135deg, var(--primary-100) 0%, #F8FAFC 100%);
-    padding: 60px 0;
+    padding: 36px 0;
 }
 
 .thanks-list {
@@ -1387,12 +1387,12 @@ body::after {
     }
     .hero-name {
         font-size: 55px;
-        margin-top: 80px;
+        margin-top: 50px;
     }
     
     .section-title {
         font-size: 36px;
-        margin-bottom: 48px;
+        margin-bottom: 24px;
     }
     
     .countdown-container {
@@ -1488,7 +1488,7 @@ body::after {
     }
     
     .section-content {
-        padding: 64px 0;
+        padding: 32px 0;
     }
     
     .music-player {
@@ -1703,8 +1703,8 @@ body.header-visible {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem auto;
-    padding: 1rem 0;
+    margin: 0.5rem auto;
+    padding: 0.75rem 0;
 }
 
 .separator img {
