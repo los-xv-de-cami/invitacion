@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - XV Años de Camila</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -16,120 +12,164 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #E6F2FA 0%, #8FB8E6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-200) 100%);
             min-height: 100vh;
-            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        :root {
+            --primary-900: #2563A1;
+            --primary-800: #1E5A8F;
+            --primary-700: #2E7BBA;
+            --primary-500: #8FB8E6;
+            --primary-400: #A4C9F0;
+            --primary-300: #C5DAF7;
+            --primary-200: #D9E7FC;
+            --primary-100: #E6F2FA;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --white: #FFFFFF;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 20px 60px rgba(37, 99, 161, 0.15);
+            padding: 20px;
         }
 
         .header {
             text-align: center;
             margin-bottom: 40px;
-            padding-bottom: 24px;
-            border-bottom: 2px solid #E5E7EB;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
         }
 
         .header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: #2563A1;
-            margin-bottom: 8px;
+            color: var(--primary-900);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .header p {
-            color: #6B7280;
-            font-size: 16px;
+            color: var(--text-gray);
+            font-size: 1.1rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #2563A1 0%, #8FB8E6 100%);
-            color: white;
-            padding: 24px;
-            border-radius: 12px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
             text-align: center;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--primary-500);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .stat-number {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-900);
+            margin-bottom: 10px;
+            display: block;
         }
 
         .stat-label {
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .controls {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
             display: flex;
-            gap: 16px;
-            margin-bottom: 32px;
+            gap: 20px;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
         }
 
         .search-box {
             flex: 1;
-            min-width: 300px;
-            padding: 12px 16px;
-            border: 2px solid #E5E7EB;
-            border-radius: 8px;
-            font-size: 16px;
+            max-width: 400px;
+            padding: 15px 20px;
+            border: 2px solid var(--primary-500);
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
         }
 
         .search-box:focus {
-            outline: none;
-            border-color: #2563A1;
+            border-color: var(--primary-900);
+            box-shadow: 0 0 0 3px rgba(37, 99, 161, 0.1);
         }
 
         .button {
-            background: #2563A1;
-            color: white;
+            padding: 15px 30px;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .button:hover {
-            background: #1e40af;
+        .button.primary {
+            background: var(--primary-900);
+            color: var(--white);
+        }
+
+        .button.primary:hover {
+            background: var(--primary-800);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .button.secondary {
-            background: transparent;
-            color: #2563A1;
-            border: 2px solid #2563A1;
+            background: var(--primary-500);
+            color: var(--white);
         }
 
         .button.secondary:hover {
-            background: #2563A1;
-            color: white;
+            background: var(--primary-700);
         }
 
         .guests-table {
-            background: white;
-            border-radius: 12px;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         table {
@@ -137,92 +177,60 @@
             border-collapse: collapse;
         }
 
-        th, td {
-            padding: 16px;
+        th {
+            background: var(--primary-900);
+            color: var(--white);
+            padding: 20px;
             text-align: left;
-            border-bottom: 1px solid #E5E7EB;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
-        th {
-            background: #F8FAFC;
-            font-weight: 600;
-            color: #374151;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        td {
+            padding: 20px;
+            border-bottom: 1px solid var(--primary-200);
+            font-size: 1rem;
         }
 
         tr:hover {
-            background: #F8FAFC;
+            background: var(--primary-100);
         }
 
         .guest-name {
             font-weight: 600;
-            color: #111827;
+            color: var(--primary-900);
+            font-size: 1.1rem;
         }
 
-        .mesa {
-            background: #2563A1;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
+        .guest-info {
+            color: var(--text-gray);
+            margin-top: 5px;
         }
 
-        .acompanantes {
-            color: #6B7280;
-            font-size: 14px;
-        }
-
-        .actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .icon-button {
-            background: none;
+        .action-button {
+            background: var(--primary-500);
+            color: var(--white);
             border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
             cursor: pointer;
-            padding: 8px;
-            border-radius: 6px;
-            transition: background 0.3s ease;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-right: 10px;
         }
 
-        .icon-button:hover {
-            background: #E5E7EB;
-        }
-
-        .copy-icon {
-            color: #10B981;
-        }
-
-        .link-icon {
-            color: #2563A1;
+        .action-button:hover {
+            background: var(--primary-700);
+            transform: translateY(-1px);
         }
 
         .loading {
             text-align: center;
-            padding: 40px;
-            color: #6B7280;
+            padding: 60px;
+            color: var(--text-gray);
+            font-size: 1.2rem;
         }
 
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #E5E7EB;
-            border-top: 4px solid #2563A1;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 16px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -231,102 +239,95 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            animation: fadeIn 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
         }
 
         .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 32px;
+            background-color: var(--white);
+            margin: 10% auto;
+            padding: 40px;
             border-radius: 16px;
             width: 90%;
-            max-width: 600px;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-
-        .close {
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #6B7280;
-        }
-
-        .close:hover {
-            color: #111827;
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
         }
 
         .modal h3 {
-            color: #2563A1;
-            margin-bottom: 16px;
-            font-size: 20px;
+            color: var(--primary-900);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
 
-        .url-container {
-            background: #F3F4F6;
-            border: 2px solid #E5E7EB;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
+        .url-display {
+            background: var(--primary-100);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
             word-break: break-all;
+            border: 2px solid var(--primary-500);
+            font-family: monospace;
+            font-size: 0.9rem;
         }
 
         .qr-container {
-            text-align: center;
-            margin: 24px 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #qrcode {
+            padding: 20px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
 
         .toast {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
-            background: #10B981;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            background: var(--success);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
             display: none;
-            z-index: 2000;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 15px;
             }
-            
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
             .controls {
                 flex-direction: column;
                 align-items: stretch;
             }
-            
+
             .search-box {
-                min-width: auto;
+                max-width: none;
             }
-            
+
+            .table-container {
+                overflow-x: auto;
+            }
+
             table {
-                font-size: 14px;
+                min-width: 600px;
             }
-            
+
             th, td {
                 padding: 12px 8px;
             }
@@ -352,56 +353,54 @@
                 <div class="stat-label">Confirmados</div>
             </div>
             <div class="stat-card">
+                <div class="stat-number" id="totalAttendees">--</div>
+                <div class="stat-label">Total de Asistentes</div>
+            </div>
+            <div class="stat-card">
                 <div class="stat-number" id="pendingGuests">--</div>
-                <div class="stat-label">Pendientes</div>
+                <div class="stat-label">No asistirán</div>
             </div>
         </div>
 
         <!-- Controls -->
         <div class="controls">
             <input type="text" id="searchBox" class="search-box" placeholder="Buscar invitado por nombre...">
-            <button class="button" onclick="exportLinks()">📥 Exportar Enlaces</button>
+            <button class="button primary" onclick="exportLinks()">📥 Exportar Enlaces</button>
             <button class="button secondary" onclick="refreshData()">🔄 Actualizar</button>
         </div>
 
         <!-- Guests Table -->
         <div class="guests-table">
             <div id="loadingState" class="loading">
-                <div class="loading-spinner"></div>
-                <p>Cargando lista de invitados...</p>
+                <div>🔄 Cargando invitados confirmados...</div>
             </div>
-            
             <table id="guestsTable" style="display: none;">
                 <thead>
                     <tr>
                         <th>Invitado</th>
                         <th>Mesa</th>
                         <th>Acompañantes</th>
-                        <th>Asistencia</th>
-                        <th>Enlaces</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="guestsTableBody">
-                    <!-- Guests will be populated here -->
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Modal for Link Preview -->
+    <!-- Modal for link display -->
     <div id="linkModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
             <h3>Enlace Personalizado</h3>
-            
-            <div class="url-container" id="modalUrl">URL cargando...</div>
-            
+            <div class="guest-details" id="modalGuestDetails"></div>
+            <div class="url-display" id="urlDisplay"></div>
             <div class="qr-container">
                 <div id="qrcode"></div>
             </div>
             
             <div style="text-align: center; margin-top: 24px;">
-                <button class="button" onclick="copyUrl()">📋 Copiar Enlace</button>
+                <button class="button primary" onclick="copyUrl()">📋 Copiar Enlace</button>
                 <button class="button secondary" onclick="testLink()">🔗 Probar Enlace</button>
             </div>
         </div>
@@ -412,7 +411,7 @@
 
     <script>
         // Configuration
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy61tx2z-X7roOyl-c-0tuTSWuWY7omGfpSsx7NjezeWVewn8zj6c4xHvUTGlG8Fnj/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzyDWLl-dSTdL6S68_AH28xqB8KYmKOnWdsCVNPMsbycnP9MSa5AqJ4u8B8ty_nrkkU/exec';
         
         let allGuests = [];
         let filteredGuests = [];
@@ -442,12 +441,33 @@
             const total = allGuests.length;
             const confirmed = allGuests.filter(guest => 
                 guest.Asistencia === 'Si' || guest.Asistencia === 'si' || guest.Asistencia === 'SÍ' || guest.Asistencia === 'sí'
-            ).length;
-            const pending = total - confirmed;
+            );
+
+            const confirmedCount = confirmed.length;
+            const pendingCount = total - confirmedCount;
+
+            // Calcular total de asistentes (invitados confirmados + sus acompañantes)
+            let totalAttendees = 0;
+            confirmed.forEach(guest => {
+                // Cada invitado confirmado cuenta como 1
+                totalAttendees += 1;
+                
+                // Contar acompañantes
+                const companions = guest.Nombres_Acompanantes || '';
+                if (companions.trim() !== '') {
+                    // Contar acompañantes separados por comas o "y"
+                    const companionCount = companions.split(/[,yY]|\s+y\s+|\s+and\s+/i)
+                        .map(name => name.trim())
+                        .filter(name => name.length > 0)
+                        .length;
+                    totalAttendees += companionCount;
+                }
+            });
 
             document.getElementById('totalGuests').textContent = total;
-            document.getElementById('confirmedGuests').textContent = confirmed;
-            document.getElementById('pendingGuests').textContent = pending;
+            document.getElementById('confirmedGuests').textContent = confirmedCount;
+            document.getElementById('totalAttendees').textContent = totalAttendees;
+            document.getElementById('pendingGuests').textContent = pendingCount;
         }
 
         // Filter only confirmed guests
@@ -468,116 +488,117 @@
 
             guests.forEach(guest => {
                 const row = document.createElement('tr');
-                const invitationUrl = `https://los-xv-de-cami.github.io/invitacion/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
-                
                 row.innerHTML = `
-                    <td class="guest-name">${guest.Nombre}</td>
-                    <td><span class="mesa">Mesa ${guest.Mesa_Asignada}</span></td>
-                    <td class="acompanantes">${guest.Nombres_Acompanantes || 'Ninguno'}</td>
-                    <td style="color: #10B981; font-weight: 600;">✓ Confirmado</td>
-                    <td class="actions">
-                        <button class="icon-button copy-icon" onclick="copyGuestLink('${invitationUrl}', '${guest.Nombre}')" title="Copiar enlace">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                            </svg>
-                        </button>
-                        <button class="icon-button link-icon" onclick="showLinkModal('${invitationUrl}', '${guest.Nombre}')" title="Ver QR y enlace">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                            </svg>
+                    <td>
+                        <div class="guest-name">${guest.Nombre}</div>
+                        <div class="guest-info">ID: ${guest.ID_Invitado}</div>
+                    </td>
+                    <td>${guest.Mesa_Asignada || 'Por asignar'}</td>
+                    <td>${guest.Nombres_Acompanantes || 'Ninguno'}</td>
+                    <td>
+                        <button class="action-button" onclick="showGuestLink('${guest.ID_Invitado}')">
+                            👁️ Ver Enlace
                         </button>
                     </td>
                 `;
-                
                 tbody.appendChild(row);
             });
+        }
+
+        // Show guest link modal
+        function showGuestLink(guestId) {
+            const guest = filteredGuests.find(g => g.ID_Invitado === guestId);
+            if (!guest) return;
+
+            currentGuest = guest;
+            const invitationUrl = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
+            
+            // Update modal content
+            document.getElementById('modalGuestDetails').innerHTML = `
+                <p><strong>${guest.Nombre}</strong></p>
+                <p>Mesa: ${guest.Mesa_Asignada || 'Por asignar'}</p>
+                <p>Acompañantes: ${guest.Nombres_Acompanantes || 'Ninguno'}</p>
+            `;
+            
+            document.getElementById('urlDisplay').textContent = invitationUrl;
+            
+            // Generate QR code
+            generateQRCode(invitationUrl);
+            
+            // Show modal
+            document.getElementById('linkModal').style.display = 'block';
+        }
+
+        // Generate QR Code
+        function generateQRCode(url) {
+            const qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = '';
+            
+            // Create QR code using qrcode.js library
+            const qr = qrcode(0, 'M');
+            qr.addData(url);
+            qr.make();
+            qrcodeDiv.innerHTML = qr.createSvgTag(6, 8);
+        }
+
+        // Copy URL to clipboard
+        function copyUrl() {
+            if (!currentGuest) return;
+            
+            const url = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${currentGuest.ID_Invitado}`;
+            
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('Enlace copiado al portapapeles');
+                document.getElementById('linkModal').style.display = 'none';
+            }).catch(() => {
+                showToast('Error al copiar enlace', 'error');
+            });
+        }
+
+        // Test link
+        function testLink() {
+            if (!currentGuest) return;
+            
+            const url = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${currentGuest.ID_Invitado}`;
+            window.open(url, '_blank');
+        }
+
+        // Close modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('linkModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
         }
 
         // Search functionality
         document.getElementById('searchBox').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-            const searched = filteredGuests.filter(guest => 
+            const filtered = filteredGuests.filter(guest => 
                 guest.Nombre.toLowerCase().includes(searchTerm)
             );
-            displayGuests(searched);
+            displayGuests(filtered);
         });
 
-        // Copy guest link
-        function copyGuestLink(url, name) {
-            navigator.clipboard.writeText(url).then(() => {
-                showToast(`Enlace de ${name} copiado al portapapeles`, 'success');
-            }).catch(err => {
-                console.error('Error copying:', err);
-                showToast('Error al copiar enlace', 'error');
-            });
-        }
-
-        // Show modal with link and QR
-        function showLinkModal(url, name) {
-            currentGuest = { url, name };
-            document.getElementById('modalUrl').textContent = url;
-            document.getElementById('linkModal').style.display = 'block';
-            
-            // Generate QR code
-            const qrContainer = document.getElementById('qrcode');
-            qrContainer.innerHTML = '';
-            new QRCode(qrContainer, {
-                text: url,
-                width: 200,
-                height: 200,
-                colorDark: "#2563A1",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.M
-            });
-        }
-
-        // Close modal
-        function closeModal() {
-            document.getElementById('linkModal').style.display = 'none';
-        }
-
-        // Copy URL from modal
-        function copyUrl() {
-            if (currentGuest) {
-                navigator.clipboard.writeText(currentGuest.url).then(() => {
-                    showToast('Enlace copiado al portapapeles', 'success');
-                });
-            }
-        }
-
-        // Test link
-        function testLink() {
-            if (currentGuest) {
-                window.open(currentGuest.url, '_blank');
-            }
-        }
-
-        // Export all links
+        // Export links as CSV
         function exportLinks() {
-            if (filteredGuests.length === 0) {
-                showToast('No hay enlaces para exportar', 'error');
-                return;
-            }
-
-            let csvContent = "data:text/csv;charset=utf-8,";
+            const csvContent = "data:text/csv;charset=utf-8,";
             csvContent += "Nombre,Mesa,Acompañantes,Enlace\n";
             
             filteredGuests.forEach(guest => {
-                const url = `https://los-xv-de-cami.github.io/invitacion/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
+                const url = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
                 csvContent += `"${guest.Nombre}","${guest.Mesa_Asignada}","${guest.Nombres_Acompanantes || ''}","${url}"\n`;
             });
-
+            
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "enlaces_invitados_xv_cami.csv");
+            link.setAttribute("download", "enlaces_invitados_xv_camila.csv");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
-            showToast('Enlaces exportados correctamente', 'success');
+            showToast('Enlaces exportados correctamente');
         }
 
         // Refresh data
@@ -602,18 +623,8 @@
             }, 3000);
         }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('linkModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadGuests();
         });
     </script>
-</body>
-</html>
