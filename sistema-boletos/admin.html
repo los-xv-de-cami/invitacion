@@ -514,7 +514,7 @@
             if (!guest) return;
 
             currentGuest = guest;
-            const invitationUrl = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
+            const invitationUrl = `https://los-xv-de-cami.github.io/invitacion/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
             
             // Update modal content
             document.getElementById('modalGuestDetails').innerHTML = `
@@ -548,7 +548,7 @@
         function copyUrl() {
             if (!currentGuest) return;
             
-            const url = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${currentGuest.ID_Invitado}`;
+            const url = `https://los-xv-de-cami.github.io/invitacion/sistema-boletos/invitacion.html?id=${currentGuest.ID_Invitado}`;
             
             navigator.clipboard.writeText(url).then(() => {
                 showToast('Enlace copiado al portapapeles');
@@ -562,7 +562,7 @@
         function testLink() {
             if (!currentGuest) return;
             
-            const url = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${currentGuest.ID_Invitado}`;
+            const url = `https://los-xv-de-cami.github.io/invitacion/sistema-boletos/invitacion.html?id=${currentGuest.ID_Invitado}`;
             window.open(url, '_blank');
         }
 
@@ -589,7 +589,7 @@
             csvContent += "Nombre,Mesa,Acompañantes,Enlace\n";
             
             filteredGuests.forEach(guest => {
-                const url = `https://los-xv-de-cami.github.io/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
+                const url = `https://los-xv-de-cami.github.io/invitacion/sistema-boletos/invitacion.html?id=${guest.ID_Invitado}`;
                 csvContent += `"${guest.Nombre}","${guest.Mesa_Asignada}","${guest.Nombres_Acompanantes || ''}","${url}"\n`;
             });
             
