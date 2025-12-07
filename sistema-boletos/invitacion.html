@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -19,12 +18,12 @@
 
         <!-- Main Ticket Card -->
         <div class="ticket-card">
-            <!-- QR Code Section -->
-            <div class="qr-section">
-                <div class="qr-container">
-                    <div id="qrcode"></div>
+            <!-- Quinceañera Photo Section -->
+            <div class="quinceanera-section">
+                <div class="quinceanera-container">
+                    <img src="camila-quinceanera-placeholder.svg" alt="Camila - Quinceañera" class="quinceanera-photo" id="quinceaneraPhoto">
                 </div>
-                <p class="qr-instruction">Este código QR es tu entrada al evento</p>
+                <p class="quinceanera-message">¡Celebramos juntos este momento especial!</p>
             </div>
 
             <!-- Event Details Section -->
@@ -96,7 +95,7 @@
                         <circle cx="12" cy="12" r="10"/>
                         <polyline points="12,6 12,12 16,14"/>
                     </svg>
-                    <span>Presenta este código QR en la entrada del evento</span>
+                    <span>Presenta esta invitación en la entrada del evento</span>
                 </div>
                 <div class="instruction-item">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -129,5 +128,3 @@
     </div>
 
     <script src="script.js"></script>
-</body>
-</html>
