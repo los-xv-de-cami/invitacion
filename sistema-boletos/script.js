@@ -46,26 +46,7 @@ function formatAcompanantes(nombresAcompanantes) {
   }
 }
 
-function generateQRCode(invitadoId, guestName) {
-  const qrContainer = document.getElementById('qrcode');
-  if (!qrContainer) return;
-  
-  // Limpiar contenedor
-  qrContainer.innerHTML = '';
-  
-  // Crear datos del QR - SIMPLIFICADOS con info del evento 2026
-  const qrText = `XV Cami|14-Feb-2026-Sab|${invitadoId}|${guestName}`;
-  
-  // Generar QR
-  new QRCode(qrContainer, {
-    text: qrText,
-    width: 200,
-    height: 200,
-    colorDark: "#0A0A0A",
-    colorLight: "#FFFFFF",
-    correctLevel: QRCode.CorrectLevel.H
-  });
-}
+// QR Code functionality removed - replaced with quinceañera photo
 
 // Data Functions
 async function fetchGuestData(invitadoId) {
@@ -152,8 +133,7 @@ async function loadInvitation() {
     // Actualizar la pantalla con los datos
     updateGuestDisplay(guestData);
     
-    // Generar código QR
-    generateQRCode(invitadoId, guestData.Nombre || 'Invitado');
+    // Invitation loaded successfully - photo is displayed automatically
     
   } catch (error) {
     console.error('Error loading invitation:', error);
